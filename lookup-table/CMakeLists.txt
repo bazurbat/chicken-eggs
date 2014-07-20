@@ -33,9 +33,9 @@ add_chicken_module(lookup-table-unsafe lookup-table-unsafe.scm EXTENSION
     OPTIONS -debug-level 0 -feature unsafe -no-bound-checks -no-argc-checks)
 add_chicken_module(lookup-table-synch lookup-table-synch.scm EXTENSION
     OPTIONS -debug-level 1
-    DEPENDS lookup-table.import)
+    DEPENDS lookup-table)
 add_chicken_module(lookup-table-unsafe-synch lookup-table-unsafe-synch.scm EXTENSION
     OPTIONS -debug-level 0 -feature unsafe -no-bound-checks -no-argc-checks
-    DEPENDS lookup-table-unsafe.import)
+    DEPENDS lookup-table-unsafe)
 
 install_chicken_modules(lookup-table)

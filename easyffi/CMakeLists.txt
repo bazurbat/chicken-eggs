@@ -27,9 +27,9 @@ add_custom_command(
 add_chicken_module(easyffi-base easyffi-base.scm EXTENSION
     DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/easyffi.l.scm)
 add_chicken_module(easyffi easyffi.scm EXTENSION
-    DEPENDS easyffi-base.import)
+    DEPENDS easyffi-base)
 add_chicken_executable(chicken-wrap chicken-wrap.scm
     DEPENDS easyffi-base)
 
 install_chicken_modules(easyffi
-    PROGRAMS chicken-wrap)
+    TARGETS chicken-wrap)

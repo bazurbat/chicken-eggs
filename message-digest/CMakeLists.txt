@@ -22,34 +22,34 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 1
 
 add_chicken_module(message-digest-primitive message-digest-primitive.scm EXTENSION)
 add_chicken_module(message-digest-type message-digest-type.scm EXTENSION
-    DEPENDS message-digest-primitive.import)
+    DEPENDS message-digest-primitive)
 add_chicken_module(message-digest-parameters message-digest-parameters.scm EXTENSION)
 add_chicken_module(message-digest-support message-digest-support.scm EXTENSION
-    DEPENDS message-digest-primitive.import message-digest-type.import)
+    DEPENDS message-digest-primitive message-digest-type)
 add_chicken_module(message-digest-bv message-digest-bv.scm EXTENSION
-    DEPENDS message-digest-primitive.import message-digest-type.import
-            message-digest-support.import)
+    DEPENDS message-digest-primitive message-digest-type
+            message-digest-support)
 add_chicken_module(message-digest-int message-digest-int.scm EXTENSION
-    DEPENDS message-digest-type.import message-digest-support.import)
+    DEPENDS message-digest-type message-digest-support)
 add_chicken_module(message-digest-srfi-4 message-digest-srfi-4.scm EXTENSION
-    DEPENDS message-digest-primitive.import message-digest-type.import
-            message-digest-support.import message-digest-bv.import)
+    DEPENDS message-digest-primitive message-digest-type
+            message-digest-support message-digest-bv)
 add_chicken_module(message-digest-update-item message-digest-update-item.scm EXTENSION
-    DEPENDS message-digest-primitive.import message-digest-type.import
-            message-digest-parameters.import message-digest-support.import)
+    DEPENDS message-digest-primitive message-digest-type
+            message-digest-parameters message-digest-support)
 add_chicken_module(message-digest-item message-digest-item.scm EXTENSION
-    DEPENDS message-digest-type.import message-digest-update-item.import)
+    DEPENDS message-digest-type message-digest-update-item)
 add_chicken_module(message-digest-port message-digest-port.scm EXTENSION
-    DEPENDS message-digest-primitive.import message-digest-type.import
-            message-digest-bv.import)
+    DEPENDS message-digest-primitive message-digest-type
+            message-digest-bv)
 add_chicken_module(message-digest-basic message-digest-basic.scm EXTENSION
-    DEPENDS message-digest-primitive.import message-digest-type.import
-            message-digest-parameters.import message-digest-bv.import
-            message-digest-int.import)
+    DEPENDS message-digest-primitive message-digest-type
+            message-digest-parameters message-digest-bv
+            message-digest-int)
 add_chicken_module(message-digest message-digest.scm EXTENSION
-    DEPENDS message-digest-primitive.import message-digest-type.import
-            message-digest-parameters.import message-digest-bv.import
-            message-digest-int.import message-digest-srfi-4.import
-            message-digest-update-item.import message-digest-item.import)
+    DEPENDS message-digest-primitive message-digest-type
+            message-digest-parameters message-digest-bv
+            message-digest-int message-digest-srfi-4
+            message-digest-update-item message-digest-item)
 
 install_chicken_modules(message-digest)

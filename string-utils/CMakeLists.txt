@@ -21,12 +21,11 @@ set(CHICKEN_OPTIONS -scrutinize -fixnum-arithmetic -inline -local
 add_chicken_module(unicode-utils unicode-utils.scm EXTENSION)
 add_chicken_module(memoized-string memoized-string.scm EXTENSION
     OPTIONS -disable-interrupts
-    DEPENDS unicode-utils.import)
+    DEPENDS unicode-utils)
 add_chicken_module(to-hex to-hex.scm EXTENSION)
 add_chicken_module(string-hexadecimal string-hexadecimal.scm EXTENSION
-    DEPENDS to-hex.import)
+    DEPENDS to-hex)
 add_chicken_module(string-utils string-utils.scm EXTENSION
-    DEPENDS memoized-string.import unicode-utils.import
-            string-hexadecimal.import)
+    DEPENDS memoized-string unicode-utils string-hexadecimal)
 
 install_chicken_modules(string-utils)

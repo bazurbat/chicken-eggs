@@ -25,6 +25,6 @@ add_chicken_module(concurrent-native-callbacks-compile-time
     cncb-compile-time-module.scm EXTENSION
     DEPENDS cncb-compile-time.scm)
 add_chicken_module(concurrent-native-callbacks cncb-module.scm EXTENSION
-    DEPENDS cncb.scm twiddle.c concurrent-native-callbacks-compile-time.import)
+    DEPENDS cncb.scm twiddle.c concurrent-native-callbacks-compile-time)
 
 install_chicken_modules(concurrent-native-callbacks)

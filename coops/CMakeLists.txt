@@ -17,6 +17,6 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0 CACHE INTERNAL "")
 
 add_chicken_module(coops coops-module.scm EXTENSION)
 add_chicken_module(coops-primitive-objects coops-primitive-objects.scm EXTENSION
-    DEPENDS coops.import)
+    DEPENDS coops)
 
 install_chicken_modules(coops)

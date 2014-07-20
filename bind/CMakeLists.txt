@@ -17,7 +17,8 @@ define_chicken_extension(bind
     AUTHOR "Felix Winkelmann"
     URL "http://wiki.call-cc.org/eggref/4/bind")
 
-set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0 CACHE INTERNAL "")
+set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0
+    CACHE INTERNAL "")
 
 file(COPY c.l DESTINATION .)
 
@@ -30,9 +31,9 @@ add_chicken_module(cplusplus-object cplusplus-object.scm EXTENSION)
 add_chicken_module(bind-translator bind-translator.scm EXTENSION
     DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/c.l.scm)
 add_chicken_module(bind bind.scm EXTENSION
-    DEPENDS bind-translator.import)
+    DEPENDS bind-translator)
 add_chicken_executable(chicken-bind chicken-bind.scm
-    DEPENDS bind-translator.import)
+    DEPENDS bind-translator)
 
 install_chicken_modules(bind
     TARGETS chicken-bind)

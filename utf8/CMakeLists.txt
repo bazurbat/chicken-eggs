@@ -19,14 +19,14 @@ set(CHICKEN_OPTIONS -fixnum-arithmetic -inline -local -optimize-level 3
 
 add_chicken_module(utf8-lolevel utf8-lolevel.scm EXTENSION)
 add_chicken_module(utf8 utf8.scm EXTENSION
-    DEPENDS utf8-lolevel.import)
+    DEPENDS utf8-lolevel)
 add_chicken_module(utf8-srfi-14 utf8-srfi-14.scm EXTENSION
-    DEPENDS utf8-lolevel.import)
+    DEPENDS utf8-lolevel)
 add_chicken_module(unicode-char-sets unicode-char-sets.scm EXTENSION)
 add_chicken_module(utf8-case-map utf8-case-map.scm EXTENSION
-    DEPENDS utf8-lolevel.import utf8-srfi-14.import)
+    DEPENDS utf8-lolevel utf8-srfi-14)
 add_chicken_module(utf8-srfi-13 utf8-srfi-13.scm EXTENSION
-    DEPENDS utf8-lolevel.import utf8-srfi-14.import utf8-case-map.import)
+    DEPENDS utf8-lolevel utf8-srfi-14 utf8-case-map)
 
 install_chicken_modules(utf8
     FILES case-map-1.dat case-map-2.dat)
