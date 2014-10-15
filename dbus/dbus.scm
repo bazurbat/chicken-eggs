@@ -272,7 +272,7 @@
 	(define (tassq tree . keys)
 		(let ([key-list (if (pair? (car keys)) (car keys) keys)])
 			(let loop ([rem-keys key-list][subtree tree])
-				(if (null? rem-keys)
+				(if (or (not subtree) (null? rem-keys))
 					subtree
 					(loop (cdr rem-keys)
 						(let ([pr (assq (car rem-keys) subtree)])
