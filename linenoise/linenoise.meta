@@ -1,0 +1,7 @@
+((egg "linenoise.egg")
+ (synopsis "A minimal, zero-config, BSD licensed, readline replacement.")
+ (author "Salvatore Sanfilippo")
+ (maintainer "Christian Kellermann")
+ (category io)
+ (license "BSD")
+ (files "README" "linenoise.release-info" "linenoise.meta" "linenoise.h" "example.scm" "linenoise.setup" "linenoise-src.c" "linenoise.scm"))

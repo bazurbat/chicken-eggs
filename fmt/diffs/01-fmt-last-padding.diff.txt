@@ -1,0 +1,37 @@
+Index: fmt-column.scm
+===================================================================
+--- fmt-column.scm	(revision 17810)
++++ fmt-column.scm	(working copy)
+@@ -130,20 +130,18 @@
+       (list
+        ;; line formatter
+        (affix
+-        (if (and last? (not (pair? tail)) (eq? align 'left))
+-            dsp
+-            (if (proportional-width? width)
+-                (case align
+-                  ((right)
+-                   (lambda (str) (lambda (st) ((pad/left (scale-width st) str) st))))
+-                  ((center)
+-                   (lambda (str) (lambda (st) ((pad/both (scale-width st) str) st))))
+-                  (else
+-                   (lambda (str) (lambda (st) ((pad/right (scale-width st) str) st)))))
+-                (case align
+-                  ((right) (lambda (str) (pad/left width str)))
+-                  ((center) (lambda (str) (pad/both width str)))
+-                  (else (lambda (str) (pad/right width str)))))))
++        (if (proportional-width? width)
++            (case align
++              ((right)
++               (lambda (str) (lambda (st) ((pad/left (scale-width st) str) st))))
++              ((center)
++               (lambda (str) (lambda (st) ((pad/both (scale-width st) str) st))))
++              (else
++               (lambda (str) (lambda (st) ((pad/right (scale-width st) str) st)))))
++            (case align
++              ((right) (lambda (str) (pad/left width str)))
++              ((center) (lambda (str) (pad/both width str)))
++              (else (lambda (str) (pad/right width str))))))
+        ;; generator
+        (if (< 0 width 1)
+            (lambda (st) ((with-width (scale-width st) gen) st))

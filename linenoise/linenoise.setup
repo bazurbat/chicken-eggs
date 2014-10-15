@@ -1,0 +1,8 @@
+(compile -s -O2 linenoise.scm -j linenoise)
+(compile -s -O2 linenoise.import.scm)
+
+(install-extension
+ 'linenoise
+ '("linenoise.so"
+   "linenoise.import.so")
+ `((version 0.8)))

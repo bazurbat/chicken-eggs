@@ -1,0 +1,7 @@
+;;; -*- Scheme -*-
+
+((synopsis "Convenient shell-command invocation")
+ (files "shell.meta" "shell.setup" "shell.scm" "shell.release-info")
+ (author "Felix Winkelmann")
+ (license "public domain")
+ (category misc))

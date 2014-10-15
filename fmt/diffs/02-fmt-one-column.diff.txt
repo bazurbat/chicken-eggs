@@ -1,0 +1,34 @@
+--- fmt-column.scm.orig	2010-04-14 03:52:05.000000000 -0500
++++ fmt-column.scm	2010-04-14 03:52:18.000000000 -0500
+@@ -104,7 +104,11 @@
+          ((deq!) #f))))))
+ 
+ (define (columnar . ls)
+-  (define (proportional-width? w) (and (number? w) (< 0 w 1)))
++  (define (proportional-width? w)
++    (and (number? w)
++         (or (< 0 w 1)
++             (and (inexact? w)
++                  (= w 1.0)))))
+   (define (build-column ls)
+     (let-optionals* ls ((fixed-width #f)
+                         (width #f)
+@@ -143,7 +147,7 @@
+               ((center) (lambda (str) (pad/both width str)))
+               (else (lambda (str) (pad/right width str))))))
+        ;; generator
+-       (if (< 0 width 1)
++       (if (proportional-width? width)
+            (lambda (st) ((with-width (scale-width st) gen) st))
+            (with-width width gen))
+        infinite?
+@@ -156,7 +160,8 @@
+            (denom (- (length ls) (+ (length fixed-ls) (length scaled-ls))))
+            (rest (if (zero? denom)
+                      0
+-                     (/ (- 1 (fold + 0 (map car scaled-ls))) denom))))
++                     (exact->inexact
++                      (/ (- 1 (fold + 0 (map car scaled-ls))) denom)))))
+       (if (negative? rest)
+           (error "fractional widths must sum to less than 1"
+                  (map car scaled-ls)))

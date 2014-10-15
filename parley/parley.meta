@@ -1,0 +1,8 @@
+((egg "parley.egg")
+ (synopsis "A readline replacement written in scheme based on linenoise.")
+ (author "Christian Kellermann")
+ (maintainer "Christian Kellermann")
+ (category io)
+ (license "BSD")
+ (needs stty)
+ (files "csi-parley.scm" "delete-word.scm" "loop.scm" "parley-auto-completion.scm" "parley.meta" "parley.scm" "parley.setup"))

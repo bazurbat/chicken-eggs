@@ -1,0 +1,131 @@
+Index: fmt.setup
+===================================================================
+--- fmt.setup	(revision 17809)
++++ fmt.setup	(revision 17810)
+@@ -4,7 +4,7 @@
+ (install-extension
+  'fmt
+  '("fmt.so" "fmt.import.so")
+- '((version 0.700) (documentation "fmt.html")))
++ '((version 0.701) (documentation "fmt.html")))
+ 
+ (compile -s -O2 -d0 -j fmt-c -o fmt-c.so fmt-c-chicken.scm)
+ (compile -s -O2 -d0 fmt-c.import.scm)
+Index: fmt-column.scm
+===================================================================
+--- fmt-column.scm	(revision 17809)
++++ fmt-column.scm	(revision 17810)
+@@ -234,58 +234,62 @@
+      st)))
+ 
+ (define (wrap-fold-words seq knil max-width get-width line . o)
+-  (let* ((last-line (if (pair? o) (car o) line))
+-         (vec (if (pair? seq) (list->vector seq) seq))
+-         (len (vector-length vec))
+-         (len-1 (- len 1))
+-         (breaks (make-vector len #f))
+-         (penalties (make-vector len #f))
+-         (widths
+-          (list->vector
+-           (map get-width (if (pair? seq) seq (vector->list seq))))))
+-    (define (largest-fit i)
+-      (let lp ((j (+ i 1)) (width (vector-ref widths i)))
+-        (let ((width (+ width 1 (vector-ref widths j))))
++  (let ((last-line (if (pair? o) (car o) line)))
++    (cond
++     ((null? seq)
++      (last-line '() knil))
++     (else
++      (let* ((vec (if (pair? seq) (list->vector seq) seq))
++             (len (vector-length vec))
++             (len-1 (- len 1))
++             (breaks (make-vector len #f))
++             (penalties (make-vector len #f))
++             (widths
++              (list->vector
++               (map get-width (if (pair? seq) seq (vector->list seq))))))
++        (define (largest-fit i)
++          (let lp ((j (+ i 1)) (width (vector-ref widths i)))
++            (let ((width (+ width 1 (vector-ref widths j))))
++              (cond
++               ((>= width max-width) (- j 1))
++               ((>= j len-1) len-1)
++               (else (lp (+ j 1) width))))))
++        (define (min-penalty! i)
+           (cond
+-            ((>= width max-width) (- j 1))
+-            ((>= j len-1) len-1)
+-            (else (lp (+ j 1) width))))))
+-    (define (min-penalty! i)
+-      (cond
+-        ((>= i len-1) 0)
+-        ((vector-ref penalties i))
+-        (else
+-         (vector-set! penalties i (expt (+ max-width 1) 3))
+-         (let ((k (largest-fit i)))
+-           (let lp ((j i) (width 0))
+-             (if (<= j k)
+-                 (let* ((width (+ width (vector-ref widths j)))
+-                        (break-penalty
+-                         (+ (max 0 (expt (- max-width (+ width (- j i))) 3))
+-                            (min-penalty! (+ j 1)))))
+-                   (cond
+-                     ((< break-penalty (vector-ref penalties i))
+-                      (vector-set! breaks i j)
+-                      (vector-set! penalties i break-penalty)))
+-                   (lp (+ j 1) width)))))
+-         (if (>= (vector-ref breaks i) len-1)
+-             (vector-set! penalties i 0))
+-         (vector-ref penalties i))))
+-    (define (sub-list i j)
+-      (let lp ((i i) (res '()))
+-        (if (> i j)
+-            (reverse res)
+-            (lp (+ i 1) (cons (vector-ref vec i) res)))))
+-    ;; compute optimum breaks
+-    (vector-set! breaks len-1 len-1)
+-    (vector-set! penalties len-1 0)
+-    (min-penalty! 0)
+-    ;; fold
+-    (let lp ((i 0) (acc knil))
+-      (let ((break (vector-ref breaks i)))
+-        (if (>= break len-1)
+-            (last-line (sub-list i len-1) acc)
+-            (lp (+ break 1) (line (sub-list i break) acc)))))))
++           ((>= i len-1) 0)
++           ((vector-ref penalties i))
++           (else
++            (vector-set! penalties i (expt (+ max-width 1) 3))
++            (let ((k (largest-fit i)))
++              (let lp ((j i) (width 0))
++                (if (<= j k)
++                    (let* ((width (+ width (vector-ref widths j)))
++                           (break-penalty
++                            (+ (max 0 (expt (- max-width (+ width (- j i))) 3))
++                               (min-penalty! (+ j 1)))))
++                      (cond
++                       ((< break-penalty (vector-ref penalties i))
++                        (vector-set! breaks i j)
++                        (vector-set! penalties i break-penalty)))
++                      (lp (+ j 1) width)))))
++            (if (>= (vector-ref breaks i) len-1)
++                (vector-set! penalties i 0))
++            (vector-ref penalties i))))
++        (define (sub-list i j)
++          (let lp ((i i) (res '()))
++            (if (> i j)
++                (reverse res)
++                (lp (+ i 1) (cons (vector-ref vec i) res)))))
++      ;; compute optimum breaks
++        (vector-set! breaks len-1 len-1)
++        (vector-set! penalties len-1 0)
++        (min-penalty! 0)
++      ;; fold
++        (let lp ((i 0) (acc knil))
++          (let ((break (vector-ref breaks i)))
++            (if (>= break len-1)
++                (last-line (sub-list i len-1) acc)
++                (lp (+ break 1) (line (sub-list i break) acc))))))))))
+ 
+ ;; XXXX don't split, traverse the string manually and keep track of
+ ;; sentence endings so we can insert two spaces

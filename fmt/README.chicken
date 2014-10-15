@@ -1,0 +1,25 @@
+This egg maintains the wrapper paradigm of the upstream source,
+using (*-chicken.scm) as wrappers that contain Chicken-specific code.
+This eases syncing with upstream.
+
+However there are a couple differences to note:
+
+- All wrappers (*-chicken.scm) are modified to use the Chicken 4
+module system instead of the Chicken 3 export style.
+
+- fmt-unicode-chicken.scm is not a wrapper because the source is a not a wrapper.
+
+- test-fmt.scm, test-fmt-c.scm: replace (load "fmt-chicken.scm") with (use fmt)
+
+- Compiled version of mantissa+exponent is disabled because it returns
+  erroneous results and causes many test failures.
+
+
+Patches applied to upstream 0.7 are in diffs/:
+
+ 00-fmt-wrap.diff.txt              wrap-lines: Do not throw error for whitespace-only string
+ 01-fmt-last-padding.diff.txt      columnar: Remove pad skip optimization for last column so pad char takes effect (maybe reinstate if pad char is space?)
+ 02-fmt-one-column.diff.txt        columnar: Do not treat 100% width as fixed width 1
+ 03-test-fmt.diff.txt              Update and add tests for patches 00,01,02
+ 04-wrap-lines-break-fix.diff.txt  wrap-lines: fix argtype error for certain combos of long lines and wrap width; add test
+ 05-unicode-columnar.diff.txt      wrap-lines, justify: handle fmt-unicode; fix divby0 bug in justify

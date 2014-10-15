@@ -1,0 +1,77 @@
+Index: test-fmt.scm
+===================================================================
+--- test-fmt.scm	(revision 23035)
++++ test-fmt.scm	(working copy)
+@@ -342,6 +342,15 @@
+ (test "foo   abc def ghi   \n      jkl mno       \n"
+       (fmt #f (with-width 20 (columnar 6 (dsp "foo") (wrap-lines "abc def ghi jkl mno")))))
+ 
++(test          ;; test divide by zero error
++ "The  quick
++brown  fox
++jumped
++over   the
++lazy dog
++"
++ (fmt #f (with-width 10 (justify "The quick brown fox jumped over the lazy dog"))))
++
+ (test "his message
+ (http://lists.nongnu.org/archive/html/chicken-users/2010-10/msg00171.html)
+ to the chicken-users
+Index: fmt.setup
+===================================================================
+--- fmt.setup	(revision 23035)
++++ fmt.setup	(working copy)
+@@ -1,4 +1,4 @@
+-(define version "0.705")
++(define version "0.706")
+ 
+ (compile -s -O2 -d0 -j fmt -o fmt.so fmt-chicken.scm)
+ (compile -s -O2 -d0 fmt.import.scm)
+Index: fmt-column.scm
+===================================================================
+--- fmt-column.scm	(revision 23035)
++++ fmt-column.scm	(working copy)
+@@ -311,21 +311,29 @@
+       (apply-cat ls))
+      st)
+     (wrap-fold (string-concatenate-reverse buffer)
+-               st (fmt-width st) string-length print-line)))
++               st (fmt-width st)
++               (or (fmt-string-width st) string-length)
++               print-line)))
+ 
+ (define (justify . ls)
+   (lambda (st)
+     (let ((width (fmt-width st))
++          (get-width (or (fmt-string-width st) string-length))
+           (output (fmt-writer st))
+           (buffer '()))
+       (define (justify-line ls st)
+         (if (null? ls)
+             (nl st)
+-            (let* ((sum (fold (lambda (s n) (+ n (string-length s))) 0 ls))
++            (let* ((sum (fold (lambda (s n) (+ n (get-width s))) 0 ls))
+                    (len (length ls))
+                    (diff (max 0 (- width sum)))
+-                   (sep (make-string (quotient diff (- len 1)) #\space))
+-                   (rem (remainder diff (- len 1))))
++                   (sep (make-string (if (= len 1)
++                                         0
++                                         (quotient diff (- len 1)))
++                                     #\space))
++                   (rem (if (= len 1)
++                            diff
++                            (remainder diff (- len 1)))))
+               (output
+                (call-with-output-string
+                  (lambda (p)
+@@ -347,7 +355,7 @@
+         (apply-cat ls))
+        st)
+       (wrap-fold (string-concatenate-reverse buffer)
+-                 st width string-length justify-line justify-last))))
++                 st width get-width justify-line justify-last))))
+ 
+ (define (fmt-file path)
+   (lambda (st)

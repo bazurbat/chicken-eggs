@@ -1,0 +1,29 @@
+Index: fmt-column.scm
+===================================================================
+--- fmt-column.scm	(revision 22714)
++++ fmt-column.scm	(working copy)
+@@ -263,6 +263,7 @@
+            ((vector-ref penalties i))
+            (else
+             (vector-set! penalties i (expt (+ max-width 1) 3))
++            (vector-set! breaks i i)
+             (let ((k (largest-fit i)))
+               (let lp ((j i) (width 0))
+                 (if (<= j k)
+Index: test-fmt.scm
+===================================================================
+--- test-fmt.scm	(revision 22714)
++++ test-fmt.scm	(working copy)
+@@ -342,6 +342,12 @@
+ (test "foo   abc def ghi   \n      jkl mno       \n"
+       (fmt #f (with-width 20 (columnar 6 (dsp "foo") (wrap-lines "abc def ghi jkl mno")))))
+ 
++(test "his message
++(http://lists.nongnu.org/archive/html/chicken-users/2010-10/msg00171.html)
++to the chicken-users
++(http://lists.nongnu.org/mailman/listinfo/chicken-users)\n"
++      (fmt #f (with-width 67 (wrap-lines "his message (http://lists.nongnu.org/archive/html/chicken-users/2010-10/msg00171.html) to the chicken-users (http://lists.nongnu.org/mailman/listinfo/chicken-users)"))))
++
+ (test "The fundamental list iterator.
+ Applies KONS to each element of
+ LS and the result of the previous

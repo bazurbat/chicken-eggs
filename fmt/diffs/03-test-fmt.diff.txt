@@ -1,0 +1,86 @@
+Index: test-fmt.scm
+===================================================================
+--- test-fmt.scm	(revision 17703)
++++ test-fmt.scm	(working copy)
+@@ -338,6 +338,9 @@
+                          (list dsp "123\n456\n"))))
+ 
+ (test "hello\nworld\n" (fmt #f (with-width 8 (wrap-lines "hello world"))))
++(test "\n" (fmt #f (wrap-lines "    ")))
++(test "foo   abc def ghi   \n      jkl mno       \n"
++      (fmt #f (with-width 20 (columnar 6 (dsp "foo") (wrap-lines "abc def ghi jkl mno")))))
+ 
+ (test "The fundamental list iterator.
+ Applies KONS to each element of
+@@ -382,12 +385,12 @@
+                 (wrap-lines "The fundamental list iterator.  Applies KONS to each element of LS and the result of the previous application, beginning with KNIL.  With KONS as CONS and KNIL as '(), equivalent to REVERSE."))))))
+ 
+ (test
+-"(define (fold kons knil ls)          ; The fundamental list iterator.
+-  (let lp ((ls ls) (acc knil))       ; Applies KONS to each element of
+-    (if (null? ls)                   ; LS and the result of the previous
+-        acc                          ; application, beginning with KNIL.
+-        (lp (cdr ls)                 ; With KONS as CONS and KNIL as '(),
+-            (kons (car ls) acc)))))  ; equivalent to REVERSE.
++"(define (fold kons knil ls)          ; The fundamental list iterator.      
++  (let lp ((ls ls) (acc knil))       ; Applies KONS to each element of     
++    (if (null? ls)                   ; LS and the result of the previous   
++        acc                          ; application, beginning with KNIL.   
++        (lp (cdr ls)                 ; With KONS as CONS and KNIL as '(),  
++            (kons (car ls) acc)))))  ; equivalent to REVERSE.              
+ "
+     (fmt #f (with-width 76
+               (columnar
+@@ -401,25 +404,40 @@
+                (wrap-lines "The fundamental list iterator.  Applies KONS to each element of LS and the result of the previous application, beginning with KNIL.  With KONS as CONS and KNIL as '(), equivalent to REVERSE.")))))
+ 
+ (test
+-"- Item 1: The text here is
+-          indented according
+-          to the space \"Item
+-          1\" takes, and one
+-          does not known what
+-          goes here.
++"- Item 1: The text here is                                                    
++          indented according                                                  
++          to the space \"Item                                                  
++          1\" takes, and one                                                   
++          does not known what                                                 
++          goes here.                                                          
+ "
+     (fmt #f (columnar 9 (dsp "- Item 1:") " " (with-width 20 (wrap-lines "The text here is indented according to the space \"Item 1\" takes, and one does not known what goes here.")))))
+ 
+ (test
+-"- Item 1: The text here is
+-          indented according
+-          to the space \"Item
+-          1\" takes, and one
+-          does not known what
+-          goes here.
++"- Item 1: The text here is                                                    
++          indented according                                                  
++          to the space \"Item                                                  
++          1\" takes, and one                                                   
++          does not known what                                                 
++          goes here.                                                          
+ "
+     (fmt #f (columnar 9 (dsp "- Item 1:\n") " " (with-width 20 (wrap-lines "The text here is indented according to the space \"Item 1\" takes, and one does not known what goes here.")))))
+ 
++(test
++"- Item 1: The text here is----------------------------------------------------
++--------- indented according--------------------------------------------------
++--------- to the space \"Item--------------------------------------------------
++--------- 1\" takes, and one---------------------------------------------------
++--------- does not known what-------------------------------------------------
++--------- goes here.----------------------------------------------------------
++"
++    (fmt #f (pad-char #\- (columnar 9 (dsp "- Item 1:\n") " " (with-width 20 (wrap-lines "The text here is indented according to the space \"Item 1\" takes, and one does not known what goes here."))))))
++
++(test
++"abc-----------------
++"
++    (fmt #f (pad-char #\- (with-width 20 (columnar (dsp "abc"))))))
++
+ ;; misc extras
+ 
+ (define (string-hide-passwords str)

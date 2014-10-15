@@ -1,0 +1,15 @@
+(compile -s "parley.scm" -J)
+(compile -s "parley.import.scm")
+
+(compile -s "parley-auto-completion.scm" -J)
+(compile -s "parley-auto-completion.import.scm")
+
+(install-extension
+ 'parley
+ '("parley.so" "parley.import.so")
+ '((version 0.8.1)))
+
+(install-extension
+ 'parley-auto-completion
+ '("parley-auto-completion.so" "parley-auto-completion.import.so")
+ '((version 0.8.1)))

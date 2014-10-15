@@ -1,0 +1,7 @@
+The source code for this egg has been taken from the linenoise
+githup repo at http://github.com/antirez/linenoise (2011-03-30)
+
+To update replace the c and header file. The c file has been renamed
+to linenoise-src.c to avoid filename clashes during the build.
+
+For further questions mail Christian Kellermann <ckeen@pestilenz.org>
