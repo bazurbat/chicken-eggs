@@ -43,14 +43,14 @@ add_chicken_egg(blowfish)
 add_chicken_egg(check-errors
     DEPENDS setup-helper)
 
-add_chicken_egg(concurrent-native-callbacks
-    DEPENDS typed-records matchable bind miscmacros shell)
+# add_chicken_egg(concurrent-native-callbacks
+#     DEPENDS typed-records matchable bind miscmacros shell)
 
 add_chicken_egg(condition-utils
     DEPENDS setup-helper check-errors)
 
-# add_chicken_egg(coops
-#     DEPENDS matchable record-variants)
+add_chicken_egg(coops
+    DEPENDS matchable record-variants)
 
 # add_chicken_egg(crc32
 #     DEPENDS setup-helper)
@@ -60,8 +60,8 @@ add_chicken_egg(dbus
 
 add_chicken_egg(defstruct)
 
-# add_chicken_egg(easyffi
-#     DEPENDS silex matchable regex make)
+add_chicken_egg(easyffi
+    DEPENDS silex matchable regex make)
 
 add_chicken_egg(feature-test)
 
@@ -74,7 +74,7 @@ add_chicken_egg(fmt
 add_chicken_egg(foreigners
     DEPENDS matchable)
 
-add_chicken_egg(format)
+# add_chicken_egg(format)
 
 add_chicken_egg(iset)
 
@@ -109,14 +109,14 @@ add_chicken_egg(miscmacros)
 
 # add_chicken_egg(monad)
 
-add_chicken_egg(parley
-    DEPENDS stty)
+# add_chicken_egg(parley
+#     DEPENDS stty)
 
 add_chicken_egg(record-variants)
 
 add_chicken_egg(regex)
 
-add_chicken_egg(scsh-process)
+# add_chicken_egg(scsh-process)
 
 add_chicken_egg(setup-helper)
 
@@ -136,16 +136,16 @@ add_chicken_egg(sql-de-lite
 add_chicken_egg(string-utils
     DEPENDS setup-helper miscmacros lookup-table check-errors)
 
-add_chicken_egg(stty
-    DEPENDS setup-helper foreigners)
+# add_chicken_egg(stty
+#     DEPENDS setup-helper foreigners)
 
 add_chicken_egg(synch
     DEPENDS setup-helper check-errors)
 
 add_chicken_egg(type-stubs)
 
-add_chicken_egg(typed-records
-    DEPENDS defstruct type-stubs)
+# add_chicken_egg(typed-records
+#     DEPENDS defstruct type-stubs)
 
 add_chicken_egg(utf8
     DEPENDS iset regex make)
