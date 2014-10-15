@@ -1,0 +1,7 @@
+(compile -s -O2 defstruct.scm -j defstruct)
+(compile -s -O2 defstruct.import.scm)
+
+(install-extension
+  'defstruct
+  '("defstruct.so" "defstruct.import.so")
+  '((version 1.6)))

@@ -1,0 +1,4 @@
+((synopsis "Type syntax stubs for Chicken < 4.7.5")
+ (author "Moritz Heidkamp")
+ (category lang-exts)
+ (license "BSD"))

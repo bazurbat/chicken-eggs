@@ -1,0 +1,7 @@
+(compile -s -O2 -d0 test.scm -j test)
+(compile -s -O2 -d0 test.import.scm)
+
+(install-extension
+ 'test
+ '("test.so" "test.import.so")
+ '((version 0.9.9.7)))

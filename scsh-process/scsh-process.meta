@@ -1,0 +1,10 @@
+;;; scsh-process.meta -*- Scheme -*-
+
+((synopsis "")
+ (author "Peter Bex")
+ (category os)
+ (license "BSD")
+ (doc-from-wiki)
+ ;(depends)
+ (test-depends test)
+ (files "scsh-process.meta" "scsh-process.release-info" "scsh-process.scm" "scsh-process.setup" "tests/run.scm"))

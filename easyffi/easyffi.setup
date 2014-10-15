@@ -1,0 +1,41 @@
+;; -*- Scheme -*-
+
+
+(use make)
+
+(define version "1.99.7")
+
+(make (("easyffi.l.scm" ("easyffi.l") 
+	(run (csi -s runsilex.scm)) )
+       ("chicken-wrap" ("chicken-wrap.scm" "easyffi-base.so")
+	(compile  -O2 -d0 chicken-wrap.scm) )
+       ("easyffi-base.so" ("easyffi-base.scm" "easyffi.l.scm")
+	(compile  -s -O2 easyffi-base.scm -j easyffi-base)
+	#;(compile  -s -O2 -d0 easyffi-base.scm -j easyffi-base) )
+       ("easyffi-base.import.so" ("easyffi-base.so") ; generates import lib
+	(compile  -s -O2 -d0 easyffi-base.import.scm) )
+       ("easyffi.so" ("easyffi.scm" "easyffi-base.import.so")
+	;; load easyffi into compiler to make module available
+	(compile  -s -O2 -d0 easyffi.scm -j easyffi) )
+       ("easyffi.import.so" ("easyffi.import.scm")
+	(compile  -s -O2 -d0 easyffi.import.scm)))
+  '("easyffi.so" "easyffi-base.so" 
+    "easyffi-base.import.so" "easyffi.import.so"
+    "chicken-wrap") )
+
+(install-extension
+ 'easyffi 
+ '("easyffi.so" "easyffi.import.so")
+ `((syntax)
+   (version ,version)))
+
+(install-extension
+ 'easyffi-base
+ '("easyffi-base.so" "easyffi-base.import.so")
+ `((version ,version)))
+
+(install-program
+ 'chicken-wrap
+ "chicken-wrap"
+ `((verison ,version)))
+

@@ -1,0 +1,14 @@
+;; -*- Scheme -*-
+
+
+;; Assume people on old versions of 4.8.1 don't mind breakage (they're running git master!)
+(let ((features (if (version>=? (chicken-version) "4.8.1")
+                    '(-feature has-thread-killer)
+                    '())))
+  (compile -s -O3 scsh-process.scm ,@features -j scsh-process)
+  (compile -s -O3 scsh-process.import.scm))
+
+(install-extension
+  'scsh-process
+  '("scsh-process.so" "scsh-process.import.so")
+  `((version "0.4.1")))

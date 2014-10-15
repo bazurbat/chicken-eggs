@@ -1,0 +1,15 @@
+;;;; string-utils.meta  -*- Hen -*-
+
+((egg "string-utils.egg")
+ (category data)
+ (author "[[kon lovett]]")
+ (license "BSD")
+ (doc-from-wiki)
+ (synopsis "String Utilities")
+ (depends
+	(setup-helper "1.5.2")
+	(miscmacros "2.9")
+	(lookup-table "1.13.1")
+	(check-errors "1.12.1"))
+ (test-depends test)
+ (files "string-utils.release-info" "string-utils.scm" "string-utils.setup" "to-hex.scm" "string-hexadecimal.scm" "unicode-utils.scm" "tests/run.scm" "memoized-string.scm" "string-utils.meta") )

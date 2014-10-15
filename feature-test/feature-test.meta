@@ -1,0 +1,9 @@
+;; -*- scheme -*-
+(
+(synopsis "Foreign feature testing")
+(author "Jim Ursetto")
+(needs)                  ;; I have no needs
+(license "BSD")
+(category lang-exts)
+
+ (files "feature-test-syntax.setup" "feature-test.scm" "feature-test-syntax.scm" "feature-test.setup" "feature-test.meta"))

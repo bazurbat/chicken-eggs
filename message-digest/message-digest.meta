@@ -1,0 +1,30 @@
+;;;; message-digest.meta  -*- Hen -*-
+
+((egg "message-digest.egg")
+ (category crypt)
+ (author "[[/users/kon-lovett]]")
+ (license "BSD")
+ (doc-from-wiki)
+ (synopsis "Message Digest Support")
+ (depends
+	(setup-helper "1.5.2")
+	(miscmacros "2.91")
+	(check-errors "1.9.0")
+	(variable-item "1.3.0")
+	(blob-utils "1.0.0")
+	(string-utils "1.2.1"))
+ (test-depends test)
+ (files
+	"message-digest.scm"
+	"message-digest-basic.scm"
+	"message-digest-port.scm"
+	"message-digest-primitive.scm"
+	"message-digest-type.scm"
+	"message-digest-update-item.scm"
+	"message-digest-bv.scm"
+	"message-digest-support.scm"
+	"message-digest-parameters.scm"
+	"message-digest-int.scm"
+	"message-digest-item.scm"
+	"message-digest-srfi-4.scm"
+	"message-digest.meta" "message-digest.setup" "message-digest.release-info" "tests/run.scm" "tests/alpha.txt") )

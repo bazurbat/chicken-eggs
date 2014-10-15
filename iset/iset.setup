@@ -1,0 +1,7 @@
+(compile -s -O3 -inline -d1 iset.scm -j iset)
+(compile -s -O3 -d0 iset.import.scm)
+
+(install-extension
+ 'iset
+ `("iset.so" "iset.import.so")
+ `((version 1.8)))

@@ -1,0 +1,8 @@
+((egg "lru-cache.egg")
+ (synopsis "LRU cache")
+ (author "Jim Ursetto")
+ (category data)
+ (license "BSD")
+ (doc-from-wiki)
+ (needs record-variants)
+ (files "lru-cache.setup" "lru-cache.scm" "lru-cache.meta"))

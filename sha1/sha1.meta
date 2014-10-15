@@ -1,0 +1,11 @@
+;;;; "sha1.meta  -*- Hen -*-
+
+((egg "sha1.egg")
+ (synopsis "Computes SHA1 (FIPS-180-1) checksums")
+ (category crypt)
+ (author "Steve Reid, packaged for Chicken by Peter Bex")
+ (doc-from-wiki)
+ (license "Public Domain")
+(depends (message-digest "3.0.0"))
+ (test-depends test)
+ (files "sha1.setup" "sha1.scm" "sha1-base.c" "sha1.meta" "sha1.release-info" "tests/run.scm" "sha1.h") )

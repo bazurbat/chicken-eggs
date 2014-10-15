@@ -1,0 +1,10 @@
+ ;;;; setup-helper.meta -*- Hen -*-
+
+((egg "setup-helper.egg")
+ (category misc)
+ (author "[[/users/kon-lovett]]")
+ (license "BSD")
+ (doc-from-wiki)
+ (synopsis "Installation/Setup Shortcut Routines")
+ (chicken 4)
+ (files "setup-helper.release-info" "setup-helper.setup" "setup-helper.meta" "setup-helper.scm" "setup-helper-mod.scm") )

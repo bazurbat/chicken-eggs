@@ -1,0 +1,9 @@
+;;; easyffi.meta -*- Scheme -*-
+
+((synopsis "Generates bindings from C/C++ declarations")
+ (category obsolete)
+ (license "BSD")
+ (needs silex matchable regex make)
+ (doc-from-wiki)
+ (author "[[felix winkelmann]]")
+ (files "easyffi.meta" "easyffi-base.scm" "TODO" "chicken-wrap.scm" "easyffi.release-info" "easyffi.scm" "easyffi.l" "easyffi.setup" "runsilex.scm" "tests/cplusplus-test.scm" "tests/tests.scm"))

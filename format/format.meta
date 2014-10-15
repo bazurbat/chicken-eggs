@@ -1,0 +1,9 @@
+;;;; -*- scheme -*-
+;;;; format.meta
+
+((synopsis "Common-Lisp style formatted output")
+ (author "Dirk Lutzebeck")
+ (license "Public Domain")
+ (maintainer "felix winkelmann, kon lovett")
+ (category io)
+ (files "format.scm" "format.setup" "format.meta" "format.txt" "tests/format-test.scm" "tests/run.scm"))

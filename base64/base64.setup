@@ -1,0 +1,12 @@
+;;;; base64.setup -*- Scheme -*-
+
+
+(compile -s -O2 -d0 -u base64.scm -j base64)
+(compile -c -O2 -d0 -unit base64 base64.scm -j base64)
+(compile -s -O2 -d0 base64.import.scm)
+
+(install-extension
+ 'base64 
+ '("base64.import.so" "base64.so" "base64.o")
+ '((version "3.3.1")
+   (static "base64.o")))

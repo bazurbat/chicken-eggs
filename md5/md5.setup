@@ -1,0 +1,7 @@
+(compile -s -O3 -d1 md5.scm -j md5)
+(compile -s -O3 -d0 md5.import.scm)
+
+(install-extension
+  'md5
+  '("md5.so" "md5.import.so")
+  `((version "3.0.0")))

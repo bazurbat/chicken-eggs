@@ -1,0 +1,3 @@
+;;;; typed-records.setup
+
+(standard-extension 'typed-records 0.6)

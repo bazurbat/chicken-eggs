@@ -1,0 +1,9 @@
+;; -*- scheme -*-
+
+(compile -s -O2 -d0 feature-test-syntax.scm)
+
+(install-extension
+ 'feature-test-syntax
+ '("feature-test-syntax.scm")
+ '((version "0.1")
+ ))

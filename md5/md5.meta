@@ -1,0 +1,11 @@
+;;; md5.meta -*- Hen -*-
+
+((egg "md5.egg")
+ (synopsis "Computes MD5 (RFC1321) checksums")
+ (category crypt)
+ (author "Colin Plumb, packaged for Chicken by Peter Bex")
+ (doc-from-wiki)
+ (license "Public Domain")
+ (depends (message-digest "3.0.0"))
+ (test-depends test)
+ (files "md5-base.c" "md5.release-info" "md5.meta" "md5.setup" "tests/run.scm" "md5.scm"))

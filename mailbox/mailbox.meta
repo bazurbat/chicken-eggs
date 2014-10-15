@@ -1,0 +1,14 @@
+;;; mailbox.meta -*- Hen -*-
+
+((egg "mailbox.egg")
+ (synopsis "Thread-safe queues with timeout")
+ (category hell)
+ (author "[[felix winkelman]] and [[kon lovett]]")
+ (license "BSD")
+ (doc-from-wiki)
+ (depends
+	(setup-helper "1.5.2")
+	(check-errors "1.12.5")
+	(condition-utils "1.0.0")
+	(record-variants "0.5"))
+ (files "mailbox.meta" "mailbox.scm" "chicken-thread-object-inlines.scm" "chicken-primitive-object-inlines.scm" "mailbox.release-info" "inline-queue.scm" "mailbox.setup" "tests/mailbox-cursor-test.scm" "tests/reader-writer-test.scm" "tests/run.scm") )

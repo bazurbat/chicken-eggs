@@ -1,0 +1,18 @@
+;;;; blob-utils.meta  -*- Hen -*-
+
+((egg "blob-utils.egg")
+ (category data)
+ (author "[[kon lovett]]")
+ (license "BSD")
+ (doc-from-wiki)
+ (synopsis "Blob Utilities")
+ (depends
+	(setup-helper "1.5.2")
+	(string-utils "1.2.2"))
+ (test-depends test)
+ (files
+ 	"blob-set-int.scm"
+ 	"blob-hexadecimal.scm"
+ 	"blob-utils.setup"
+ 	"tests/run.scm"
+ 	"blob-utils.meta") )

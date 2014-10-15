@@ -1,0 +1,8 @@
+;;; iset.meta -*- Scheme -*-
+
+((files "iset.setup" "iset.scm" "iset.release-info" "iset.meta" "iset-test.scm")
+ (category data)
+ (synopsis "Integer sets")
+ (doc-from-wiki)
+ (license "BSD")
+ (author "Alex Shinn"))

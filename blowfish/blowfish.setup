@@ -1,0 +1,9 @@
+(compile -s -O3 -d1 blowfish.scm -j blowfish)
+(compile -s -O2 -d0 blowfish.import.scm)
+
+(install-extension
+  'blowfish
+  '("blowfish.so" "blowfish.import.so")
+  '((version "1.1")
+  ))
+

@@ -1,0 +1,9 @@
+((synopsis
+   "Foreign helper macros for Chicken 4")
+ (author "Jim Ursetto")
+ (license "BSD")
+ (egg "foreigners.egg")
+ (category lang-exts)
+ (doc-from-wiki)
+ (needs matchable)
+ (files "foreigners.scm" "tests/enum-1.scm" "foreigners.meta" "foreigners.setup"))

@@ -1,0 +1,6 @@
+(compile -s -O2 -d2 foreigners.scm -j renaming -j foreigners)
+(compile -s -O2 -d0 foreigners.import.scm)
+(install-extension 
+ 'foreigners 
+ '("foreigners.so" "foreigners.import.so") 
+ '((version 1.4.1) (syntax)))

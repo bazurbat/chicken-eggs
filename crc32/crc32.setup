@@ -1,0 +1,10 @@
+(include "setup-helper")
+
+(verify-extension-name "crc32")
+
+(setup-shared-extension-module 'crc32 (extension-version "1.0.0")
+  #:compile-options '(
+    -scrutinize
+    -fixnum-arithmetic
+    -local -no-trace
+    -no-procedure-checks -no-bound-checks))

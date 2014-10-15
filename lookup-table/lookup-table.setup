@@ -1,0 +1,37 @@
+;;;; lookup-table.setup  -*- Hen -*-
+
+(use setup-helper-mod)
+
+(verify-extension-name "lookup-table")
+
+;; MAGIC-LIMIT - Element count when hash-table faster (YMMV)
+(define opts
+  '(-scrutinize
+    -prelude "\"(define-constant MAGIC-LIMIT 12)\""
+    -disable-interrupts
+    -fixnum-arithmetic
+    -local
+    -inline-limit 50
+    -no-procedure-checks
+    ;requires "-specialize" option - this is not available on pre 4.7.1 chickens
+    -optimize-level 3))
+
+(setup-shared-extension-module 'lookup-table (extension-version "1.13.5")
+  #:inline? #t
+  #:types? #t
+  #:compile-options (append opts '(-debug-level 1)))
+
+(setup-shared-extension-module 'lookup-table-unsafe (extension-version "1.13.5")
+  #:inline? #t
+  #:types? #t
+  #:compile-options (append opts '(-feature unsafe -debug-level 0 -no-bound-checks -no-argc-checks)))
+
+(setup-shared-extension-module 'lookup-table-synch (extension-version "1.13.5")
+  #:inline? #t
+  #:types? #t
+  #:compile-options (append opts '(-debug-level 1)))
+
+(setup-shared-extension-module 'lookup-table-unsafe-synch (extension-version "1.13.5")
+  #:inline? #t
+  #:types? #t
+  #:compile-options (append opts '(-feature unsafe -debug-level 0 -no-bound-checks -no-argc-checks)))

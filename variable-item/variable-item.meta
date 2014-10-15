@@ -1,0 +1,13 @@
+;;;; variable-item.meta  -*- Hen -*-
+
+((egg "variable-item.egg")
+ (category misc)
+ (author "[[kon lovett]]")
+ (license "BSD")
+ (doc-from-wiki)
+ (synopsis "variable-item")
+ (depends 
+	(setup-helper "1.2.0")
+	(check-errors "1.12.1"))
+ (test-depends test)
+ (files "variable-item.setup" "variable-item.meta" "variable-item.scm" "tests/run.scm") )

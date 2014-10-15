@@ -1,0 +1,12 @@
+;;;; mailbox.setup  -*- Hen -*-
+
+(use setup-helper-mod)
+
+(verify-extension-name 'mailbox)
+
+(setup-shared-extension-module 'mailbox (extension-version "2.1.5")
+  #:compile-options '(
+    -scrutinize
+    -feature unsafe-operations
+    -optimize-level 3 -debug-level 1
+    -no-procedure-checks -no-bound-checks -no-argc-checks))

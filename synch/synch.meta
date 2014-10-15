@@ -1,0 +1,13 @@
+;;;; synch.meta -*- Hen -*-
+
+((egg "synch.egg")
+ (category hell)
+ (author "[[/users/kon-lovett|Kon Lovett]]")
+ (license "BSD")
+ (doc-from-wiki)
+ (synopsis "Synchronization Forms")
+ (depends
+	(setup-helper "1.2.0")
+	(check-errors "1.12.1"))
+(test-depends miscmacros)
+(files "synch.release-info" "synch.meta" "synch.setup" "synch.scm" "tests/run.scm") )

@@ -1,0 +1,27 @@
+;;;; setup-helper.setup -*- Hen -*-
+
+(define this-verno "1.5.3")
+
+(define (shared-filename bn)
+  (make-pathname #f bn ##sys#load-dynamic-extension) )
+
+(compile -s -O3 -d1 setup-helper-mod.scm -j setup-helper-mod)
+(compile -s -O3 -d0 setup-helper-mod.import.scm)
+
+(install-extension
+  'setup-helper-mod
+  `(,(shared-filename "setup-helper-mod")
+  	,(shared-filename "setup-helper-mod.import") )
+  `((version ,this-verno) ) )
+
+;Place along default include path
+(handle-exceptions exn
+		;Ignore any exceptions but remind user about problem.
+		(begin
+			(warning "cannot copy to Chicken Home: must use CHICKEN_INCLUDE_PATH when installing an egg using \"setup-helper\"") )
+	(when (setup-install-mode) (copy-file "setup-helper.scm" (chicken-home))) )
+
+;Put a copy in the repo as well
+(install-extension 'setup-helper
+	'("setup-helper.scm")
+	`((version ,this-verno) ) )

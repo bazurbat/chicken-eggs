@@ -1,0 +1,14 @@
+;;; silex.meta -*- Hen -*-
+((egg "silex.egg")
+
+ (files "silex.meta" "silex.setup" "silex.scm" "tests")
+
+ (synopsis "An efficient and powerful lexer generator")
+
+ (category parsing)
+
+ (license "BSD")
+
+ (test-depends test)
+
+ (author "Danny Dub&eacute;"))

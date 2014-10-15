@@ -1,0 +1,8 @@
+
+(compile -s -O2 -d1 silex.scm -j silex)
+
+(compile -s -O2 -d1 silex.import.scm)
+
+(install-extension 
+ 'silex '("silex.so" "silex.import.so") 
+ '((version 1.4)))

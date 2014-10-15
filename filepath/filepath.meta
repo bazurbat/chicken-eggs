@@ -1,0 +1,27 @@
+;; -*- Hen -*-
+
+((egg "filepath.egg") ; This should never change
+
+ ; List here all the files that should be bundled as part of your egg.  
+
+ (files "filepath.meta" "filepath.scm" "filepath.setup" "tests")
+
+ ; Your egg's license:
+
+ (license "BSD")
+
+ ; Pick one from the list of categories (see below) for your egg and
+ ; enter it here.
+
+ (category parsing)
+
+ ; A list of eggs filepath depends on.
+
+ (needs matchable )
+
+ (test-depends test)
+
+ (author "Ivan Raikov")
+
+ (synopsis "Cross-platform file path manipulation."))
+

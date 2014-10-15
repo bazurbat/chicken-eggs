@@ -1,0 +1,9 @@
+;;; test.meta -*- Scheme -*-
+
+((synopsis "Yet Another Testing Utility")
+ (license "BSD")
+ (category testing)
+ (author "Alex Shinn")
+ (doc-from-wiki)
+ (depends regex)
+ (files "test-support.scm" "test.scm" "test.meta" "test.release-info" "test.setup"))

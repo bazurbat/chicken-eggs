@@ -1,0 +1,11 @@
+;;;; synch.setup
+
+(include "setup-helper")
+
+(verify-extension-name 'synch)
+
+(setup-shared-extension-module 'synch (extension-version "2.1.2")
+  #:compile-options '(
+    -disable-interrupts
+    -fixnum-arithmetic
+    -optimize-level 3 -debug-level 1))

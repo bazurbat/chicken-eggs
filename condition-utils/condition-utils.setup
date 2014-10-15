@@ -1,0 +1,14 @@
+;;;; condition-utils.setup  -*- Hen -*-
+
+(use setup-helper-mod)
+
+(verify-extension-name "condition-utils")
+
+(setup-shared-extension-module 'condition-utils (extension-version "1.0.2")
+  #:inline? #t
+  #:types? #t
+  #:compile-options '(
+    -scrutinize
+    -fixnum-arithmetic
+    -optimize-level 3
+    -no-procedure-checks))

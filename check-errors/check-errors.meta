@@ -1,0 +1,11 @@
+;;;; check-errors.meta  -*- Hen -*-
+
+((egg "check-errors.egg")
+ (category misc)
+ (author "[[/users/kon-lovett|Kon Lovett]]")
+ (license "BSD")
+ (doc-from-wiki)
+ (synopsis "Argument checks & errors")
+ (depends (setup-helper "1.5.2"))
+ (test-depends test)
+ (files "check-errors.meta" "check-errors.scm" "type-errors.scm" "check-errors.setup" "srfi-4-errors.scm" "srfi-4-checks.scm" "inline-type-checks.scm" "type-checks.scm" "tests/run.scm") )

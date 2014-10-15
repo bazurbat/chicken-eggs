@@ -1,0 +1,20 @@
+;; -*- scheme -*-
+
+(compile -s -O2 -d0 feature-test.scm -j feature-test)
+(compile -s -O2 -d0 feature-test.import.scm)
+
+(install-extension
+ 'feature-test
+ '("feature-test.so" "feature-test.import.so")
+ '((version "0.1")
+   (syntax)
+   (require-at-runtime feature-test)
+ ))
+
+;; deliberately skip compilation of feature-test-syntax
+
+(install-extension
+ 'feature-test-syntax
+ '("feature-test-syntax.scm")
+ '((version "0.1")
+ ))

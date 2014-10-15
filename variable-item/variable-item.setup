@@ -1,0 +1,11 @@
+;;;; variable-item.setup  -*- Hen -*-
+
+(include "setup-helper")
+
+(verify-extension-name "variable-item")
+
+(setup-shared-extension-module 'variable-item (extension-version "1.3.0")
+  #:compile-options '(
+    -fixnum-arithmetic
+    -optimize-level 3 -debug-level 1
+    -no-procedure-checks))

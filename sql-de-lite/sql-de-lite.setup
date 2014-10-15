@@ -1,0 +1,100 @@
+;; -*- scheme -*-
+
+;; Optional arguments to chicken-install (requires Chicken 4.5.1):
+;; -D sql-de-lite-internal-lib: Force linking with included SQLite library.
+;; -D sql-de-lite-external-lib: Force linking with system SQLite library.
+
+;; Use CSC_OPTIONS="-I<incdir> -L<libdir>" chicken-install
+;; if you want to look for an external SQLite3 library in a non-standard location.
+
+(define extension-version "0.6.1")
+
+;; Minimum SQLite version to accept when choosing whether to use external library.
+;; There's also a minimum legal version that we can even use, but we just let the
+;; linker error out if too old.
+(define +min-sqlite3-libversion+ 3007011)   ;; 3007011 is included with egg
+
+(define sqlite3-options
+  '(-C -DSQLITE_ENABLE_FTS3
+    -C -DSQLITE_ENABLE_FTS3_PARENTHESIS
+    -C -DSQLITE_THREADSAFE=0                ;; otherwise, pthreads required
+    ))
+
+;; Options are pulled from (extra-features), i.e. the -D option to chicken-install.
+;; (extra-features) requires Chicken 4.5.1; otherwise, options are set to empty.
+(define sql-de-lite-options
+  (handle-exceptions exn '() (extra-features)))
+(define force-internal-lib?
+  (memq 'sql-de-lite-internal-lib sql-de-lite-options))
+(define force-external-lib?
+  (memq 'sql-de-lite-external-lib sql-de-lite-options))
+(when (and force-internal-lib?
+           force-external-lib?)
+  (error 'sql-de-lite "cannot force both external and internal SQLite lib"))
+
+(define-syntax compile/error
+  ;; Required for Chicken < 4.6, which calls (reset) on (compile) error.
+  (syntax-rules ()
+    ((compile/error args ...)
+     (let ((old-reset (reset-handler)))
+       (parameterize ((reset-handler
+                       (lambda ()
+                         (parameterize ((reset-handler old-reset))
+                           (error 'compile "compilation error")))))
+         (compile args ...))))))
+
+;; Returns sqlite3 libversion number (e.g. 3006021) or #f if unable to obtain.
+(define (get-sqlite3-libversion)
+  (let ((exe (cond-expand (windows ".\\version-check.exe")  ;; stupid, but make-pathname can't do \ anymore
+                          (else "./version-check"))))
+    (and (handle-exceptions e #f
+           (compile/error -o ,exe version-check.scm -lsqlite3))
+         (and (let ((version (with-input-from-pipe exe read))) ;; never errors
+                (and (number? version) version))))))
+
+(define (build/internal)
+  (print "\n+++ SQLite3 version >= " +min-sqlite3-libversion+ " not found, using bundled version\n")
+  (compile -s -O2 -d2 -inline -local sql-de-lite.scm -j sql-de-lite
+           -Isqlite3 sqlite3/sqlite3.c
+           ,@sqlite3-options)
+  ;; Using Chicken to compile the shell may link to extraneous libraries,
+  ;; but it's easier than figuring out the compilation process ourselves.
+  (compile -O2 -o chicken-sqlite3 -Isqlite3
+           sqlite3/shell.c sqlite3/sqlite3.c
+           ,@sqlite3-options
+           -C -DSQLITE_THREADSAFE=0      ;; Shell is single-threaded.
+           )
+  (install-library)
+  (install-shell))
+
+(define (build/external ver)
+  (when ver
+    (print "\n+++ SQLite3 version " ver " found\n"))
+  (compile -s -O2 -d2 -inline -local sql-de-lite.scm -j sql-de-lite -lsqlite3)
+  (install-library))
+
+(define (install-library)
+  (compile -s -O2 -d0 sql-de-lite.import.scm)
+  (install-extension
+   'sql-de-lite 
+   `("sql-de-lite.so" "sql-de-lite.import.so")
+   `((version ,extension-version))))
+
+(define (install-shell)
+  (install-program
+   'sql-de-lite-shell
+   `("chicken-sqlite3")
+   `((version ,extension-version))))
+
+;;; Main logic
+
+(cond (force-internal-lib?
+       (build/internal))
+      (force-external-lib?
+       (build/external #f))
+      (else
+       (let ((ver (get-sqlite3-libversion)))
+         (if (and ver (>= ver +min-sqlite3-libversion+))
+             (build/external ver)
+             (build/internal)))))
+

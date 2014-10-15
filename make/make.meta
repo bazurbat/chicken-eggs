@@ -1,0 +1,9 @@
+;;; make.meta -*- Scheme -*-
+
+((egg "make.egg")
+ (synopsis "The PLT 'make' macro")
+ (category lang-exts)
+ (license "LGPL-1")
+ (doc-from-wiki)
+ (author "PLT, adapted to Chicken by [[felix winkelmann]]")
+ (files "make.setup" "make.scm" "make.meta" "make.release-info"))

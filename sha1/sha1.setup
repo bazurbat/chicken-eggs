@@ -1,0 +1,7 @@
+(compile -s -O3 -d1 sha1.scm -j sha1)
+(compile -s -O3 -d0 sha1.import.scm)
+
+(install-extension
+  'sha1
+  '("sha1.so" "sha1.import.so")
+  '((version "3.0.0")))

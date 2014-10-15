@@ -1,0 +1,42 @@
+;;;; check-errors.setup  -*- Hen -*-
+
+(use setup-helper-mod)
+
+(verify-extension-name "check-errors")
+
+;Place along default include path
+(handle-exceptions exn
+		;Ignore any exceptions but remind user about problem.
+		(begin
+			(warning "cannot copy to Chicken Home: must use CHICKEN_INCLUDE_PATH when using \"inline-type-checks\"") )
+	(install-in-home "inline-type-checks.scm") )
+
+; Do not use -local with error modules so error & warning can be rebound.
+
+(setup-shared+static-extension-module 'type-errors (extension-version "1.13.0")
+  #:inline? #t
+  #:types? #t
+  #:compile-options '(-fixnum-arithmetic -no-procedure-checks -no-bound-checks))
+
+(setup-shared+static-extension-module 'srfi-4-errors (extension-version "1.13.0")
+  #:inline? #t
+  #:types? #t
+  #:compile-options '(-fixnum-arithmetic -no-procedure-checks -no-bound-checks))
+
+(setup-shared+static-extension-module 'type-checks (extension-version "1.13.0")
+  #:inline? #t
+  #:types? #t
+  #:compile-options '(-optimize-level 3 -no-procedure-checks -no-bound-checks)
+  #:files '("inline-type-checks.scm"))
+
+(setup-shared+static-extension-module 'srfi-4-checks (extension-version "1.13.0")
+  #:inline? #t
+  #:types? #t
+  #:compile-options '(-optimize-level 3 -no-procedure-checks -no-bound-checks))
+
+(install-extension 'check-errors '() `((version ,(extension-version "1.13.0"))))
+
+(setup-shared+static-extension-module 'check-errors (extension-version "1.13.0")
+  #:inline? #t
+  #:types? #t
+  #:compile-options '(-optimize-level 3 -no-procedure-checks -no-bound-checks))

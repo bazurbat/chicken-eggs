@@ -1,0 +1,24 @@
+;;;; blob-utils.setup  -*- Hen -*-
+
+(use setup-helper-mod)
+
+(verify-extension-name "blob-utils")
+
+(setup-shared+static-extension-module 'blob-set-int (extension-version "1.0.3")
+  #:types? #t
+  #:inline? #t
+  #:compile-options '(
+    -scrutinize
+    -optimize-level 3 -debug-level 1
+    -no-procedure-checks -no-argc-checks -no-bound-checks))
+
+(setup-shared-extension-module 'blob-hexadecimal (extension-version "1.0.3")
+  #:types? #t
+  #:inline? #t
+  #:compile-options '(
+    -scrutinize
+    -fixnum-arithmetic
+    -O3 -d1
+    -no-procedure-checks))
+
+(install-extension-tag 'blob-utils (extension-version "1.0.3"))

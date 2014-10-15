@@ -1,0 +1,16 @@
+;;;; lookup-table.meta  -*- Hen -*-
+
+((egg "lookup-table.egg")
+ (category data)
+ (author "[[kon lovett]]")
+ (license "BSD")
+ (doc-from-wiki)
+ (synopsis "Simple Lookup Table")
+ (depends
+	(setup-helper "1.5.2")
+	(check-errors "1.10.0")
+	(miscmacros "2.91")
+	(record-variants "0.5")
+	(synch "2.1.0"))
+ (test-depends test)
+ (files "lookup-table.meta" "lookup-table-unsafe.scm" "lookup-table-unsafe-synch.scm" "lookup-table.scm" "chicken-primitive-object-inlines.scm" "lookup-table-body.scm" "lookup-table-synch.scm" "lookup-table.release-info" "tests/safe-synch.scm" "tests/safe.scm" "tests/run.scm" "tests/test-body.scm" "tests/unsafe.scm" "tests/unsafe-synch.scm" "lookup-table.setup") )

@@ -1,0 +1,11 @@
+(command-line-arguments '())
+
+(include "makefile.scm")
+
+(install-extension 
+ 'concurrent-native-callbacks
+ '("concurrent-native-callbacks.so"
+   "concurrent-native-callbacks.import.so"
+   "concurrent-native-callbacks-compile-time.so"
+   "concurrent-native-callbacks-compile-time.import.so")
+ '((version 0.7)))

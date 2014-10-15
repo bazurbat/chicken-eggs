@@ -1,0 +1,76 @@
+CHICKEN is a compiler for the Scheme programming language. CHICKEN produces portable and efficient C, supports almost all of the R5RS Scheme language standard, and includes many enhancements and extensions. CHICKEN runs on Linux, MacOS X, Windows, and many Unix flavours.
+FEATURES
+Includes a full-featured interactive interpreter as well as an optimizing batch compiler
+Usable for interpreted scripts or compiled standalone executables with either dynamic or static linkage
+Full support for tail recursion, first-class continuations and hygienic macros
+Highly portable and known to run on many platforms, including x86, x86-64, IA-64, PowerPC, SPARC and UltraSPARC, Alpha, MIPS, ARM and S/390
+Distributed free for use and modification under the terms of the BSD License
+Transparent support for dynamically loadable compiled code and linkage to C
+An easy to use foreign function interface for accessing C and C++ libraries from Scheme code
+Lightweight user-level threads based on first-class continuations
+Provides high- and low-level hygienic macros, including syntax-rules
+Includes a powerful module system that integrates hygienic macros and separate compilation
+A POSIX interface that covers environment and filesystem access, pipes, processes, signals, locks, sockets, and low-level and memory-mapped I/O
+Perl-compatible regular expressions, including support for SRE syntax (Structured Regular Expressions)
+Support for interpreted or compiled shell scripts under Unix and Windows
+Straightforward creation of standalone applications and self-contained application bundles
+Builtin support for cross-compiling applications for embedded targets
+Support for a large number of Scheme Requests For Implementation (SRFIs)
+Many libraries and extensions are available at Eggs Unlimited
+CHICKEN is a compiler for the Scheme programming language. CHICKEN produces portable and efficient C, supports almost all of the R5RS Scheme language standard, and includes many enhancements and extensions. CHICKEN runs on Linux, MacOS X, Windows, and many Unix flavours.
+FEATURES
+Includes a full-featured interactive interpreter as well as an optimizing batch compiler
+Usable for interpreted scripts or compiled standalone executables with either dynamic or static linkage
+Full support for tail recursion, first-class continuations and hygienic macros
+Highly portable and known to run on many platforms, including x86, x86-64, IA-64, PowerPC, SPARC and UltraSPARC, Alpha, MIPS, ARM and S/390
+Distributed free for use and modification under the terms of the BSD License
+Transparent support for dynamically loadable compiled code and linkage to C
+An easy to use foreign function interface for accessing C and C++ libraries from Scheme code
+Lightweight user-level threads based on first-class continuations
+Provides high- and low-level hygienic macros, including syntax-rules
+Includes a powerful module system that integrates hygienic macros and separate compilation
+A POSIX interface that covers environment and filesystem access, pipes, processes, signals, locks, sockets, and low-level and memory-mapped I/O
+Perl-compatible regular expressions, including support for SRE syntax (Structured Regular Expressions)
+Support for interpreted or compiled shell scripts under Unix and Windows
+Straightforward creation of standalone applications and self-contained application bundles
+Builtin support for cross-compiling applications for embedded targets
+Support for a large number of Scheme Requests For Implementation (SRFIs)
+Many libraries and extensions are available at Eggs Unlimited
+CHICKEN is a compiler for the Scheme programming language. CHICKEN produces portable and efficient C, supports almost all of the R5RS Scheme language standard, and includes many enhancements and extensions. CHICKEN runs on Linux, MacOS X, Windows, and many Unix flavours.
+FEATURES
+Includes a full-featured interactive interpreter as well as an optimizing batch compiler
+Usable for interpreted scripts or compiled standalone executables with either dynamic or static linkage
+Full support for tail recursion, first-class continuations and hygienic macros
+Highly portable and known to run on many platforms, including x86, x86-64, IA-64, PowerPC, SPARC and UltraSPARC, Alpha, MIPS, ARM and S/390
+Distributed free for use and modification under the terms of the BSD License
+Transparent support for dynamically loadable compiled code and linkage to C
+An easy to use foreign function interface for accessing C and C++ libraries from Scheme code
+Lightweight user-level threads based on first-class continuations
+Provides high- and low-level hygienic macros, including syntax-rules
+Includes a powerful module system that integrates hygienic macros and separate compilation
+A POSIX interface that covers environment and filesystem access, pipes, processes, signals, locks, sockets, and low-level and memory-mapped I/O
+Perl-compatible regular expressions, including support for SRE syntax (Structured Regular Expressions)
+Support for interpreted or compiled shell scripts under Unix and Windows
+Straightforward creation of standalone applications and self-contained application bundles
+Builtin support for cross-compiling applications for embedded targets
+Support for a large number of Scheme Requests For Implementation (SRFIs)
+Many libraries and extensions are available at Eggs Unlimited
+CHICKEN is a compiler for the Scheme programming language. CHICKEN produces portable and efficient C, supports almost all of the R5RS Scheme language standard, and includes many enhancements and extensions. CHICKEN runs on Linux, MacOS X, Windows, and many Unix flavours.
+FEATURES
+Includes a full-featured interactive interpreter as well as an optimizing batch compiler
+Usable for interpreted scripts or compiled standalone executables with either dynamic or static linkage
+Full support for tail recursion, first-class continuations and hygienic macros
+Highly portable and known to run on many platforms, including x86, x86-64, IA-64, PowerPC, SPARC and UltraSPARC, Alpha, MIPS, ARM and S/390
+Distributed free for use and modification under the terms of the BSD License
+Transparent support for dynamically loadable compiled code and linkage to C
+An easy to use foreign function interface for accessing C and C++ libraries from Scheme code
+Lightweight user-level threads based on first-class continuations
+Provides high- and low-level hygienic macros, including syntax-rules
+Includes a powerful module system that integrates hygienic macros and separate compilation
+A POSIX interface that covers environment and filesystem access, pipes, processes, signals, locks, sockets, and low-level and memory-mapped I/O
+Perl-compatible regular expressions, including support for SRE syntax (Structured Regular Expressions)
+Support for interpreted or compiled shell scripts under Unix and Windows
+Straightforward creation of standalone applications and self-contained application bundles
+Builtin support for cross-compiling applications for embedded targets
+Support for a large number of Scheme Requests For Implementation (SRFIs)
+Many libraries and extensions are available at Eggs Unlimited

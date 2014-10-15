@@ -1,0 +1,8 @@
+((egg "mailbox-threads.egg")
+ (files "mailbox-threads.release-info" "mailbox-threads.meta" "mailbox-threads.scm" "mailbox-threads.setup" "tests/run.scm")
+ (doc-from-wiki)
+ (needs mailbox)
+ (license "BSD")
+ (category hell)
+ (author "Christian Kellermann")
+ (synopsis "An enhancement for srfi-18 that connects a mailbox to each thread."))

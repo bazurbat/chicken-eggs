@@ -1,0 +1,11 @@
+;;; typed-records.meta -*- Scheme -*-
+
+((synopsis "Typed variants of various record-definition macros")
+ (category misc)
+ (license "BSD")
+ (doc-from-wiki)
+ (depends defstruct type-stubs)
+ (test-depends test)
+ (author "felix winkelmann")
+ (files "typed-records.scm" "typed-records.meta" "typed-records.setup"
+	"tests/run.scm"))

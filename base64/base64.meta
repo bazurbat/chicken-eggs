@@ -1,0 +1,11 @@
+;;; base64.meta -*- Scheme -*-
+
+
+((synopsis "Encoding and decoding of base64 strings")
+ (category parsing)
+ (license "BSD")
+ (doc-from-wiki)
+ (test-depends "test")
+ (files "base64.setup" "base64.scm" "base64.meta" "tests/run.scm")
+ (author "James Bailey, Jim Ursetto"))
+

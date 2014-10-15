@@ -1,0 +1,6 @@
+((license "BSD")
+ (category parsing)
+ (depends)
+ (test-depends test)
+ (author "rivo")
+ (synopsis "Binary pattern matching"))

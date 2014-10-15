@@ -1,0 +1,101 @@
+;;;; message-digest.setup  -*- Hen -*-
+
+(use setup-helper-mod)
+
+(verify-extension-name "message-digest")
+
+(setup-shared+static-extension-module 'message-digest-primitive (extension-version "3.0.5")
+  #:inline? #t
+	#:types? #t
+  #:compile-options '(
+    -scrutinize
+    -optimize-level 3 -debug-level 1
+    -no-procedure-checks-for-toplevel-bindings))
+
+(setup-shared+static-extension-module 'message-digest-type (extension-version "3.0.5")
+  #:inline? #t
+	#:types? #t
+  #:compile-options '(
+    -scrutinize
+    -optimize-level 3 -debug-level 1
+    -no-procedure-checks-for-toplevel-bindings))
+
+(setup-shared+static-extension-module 'message-digest-parameters (extension-version "3.0.5")
+  #:inline? #t
+	#:types? #t
+  #:compile-options '(
+    -scrutinize
+    -optimize-level 3 -debug-level 1
+    -no-procedure-checks-for-toplevel-bindings))
+
+(setup-shared+static-extension-module 'message-digest-support (extension-version "3.0.5")
+  #:inline? #t
+	#:types? #t
+  #:compile-options '(
+    -scrutinize
+    -optimize-level 3 -debug-level 1
+    -no-procedure-checks-for-toplevel-bindings))
+
+(setup-shared+static-extension-module 'message-digest-bv (extension-version "3.0.5")
+  #:inline? #t
+	#:types? #t
+  #:compile-options '(
+    -scrutinize
+    -optimize-level 3 -debug-level 1
+    -no-procedure-checks-for-toplevel-bindings))
+
+(setup-shared+static-extension-module 'message-digest-int (extension-version "3.0.5")
+  #:inline? #t
+	#:types? #t
+  #:compile-options '(
+    -scrutinize
+    -optimize-level 3 -debug-level 1
+    -no-procedure-checks-for-toplevel-bindings))
+
+(setup-shared+static-extension-module 'message-digest-srfi-4 (extension-version "3.0.5")
+  #:inline? #t
+	#:types? #t
+  #:compile-options '(
+    -scrutinize
+    -optimize-level 3 -debug-level 1
+    -no-procedure-checks-for-toplevel-bindings))
+
+(setup-shared+static-extension-module 'message-digest-update-item (extension-version "3.0.5")
+  #:inline? #t
+	#:types? #t
+  #:compile-options '(
+    -scrutinize
+    -optimize-level 3 -debug-level 1
+    -no-procedure-checks-for-toplevel-bindings))
+
+(setup-shared+static-extension-module 'message-digest-item (extension-version "3.0.5")
+  #:inline? #t
+	#:types? #t
+  #:compile-options '(
+    -scrutinize
+    -optimize-level 3 -debug-level 1
+    -no-procedure-checks-for-toplevel-bindings))
+
+(setup-shared+static-extension-module 'message-digest-port (extension-version "3.0.5")
+  #:inline? #t
+	#:types? #t
+  #:compile-options '(
+    -scrutinize
+    -optimize-level 3 -debug-level 1
+    -no-procedure-checks-for-toplevel-bindings))
+
+(setup-shared+static-extension-module 'message-digest-basic (extension-version "3.0.5")
+  #:inline? #t
+	#:types? #t
+  #:compile-options '(
+    -scrutinize
+    -optimize-level 3 -debug-level 1
+    -no-procedure-checks-for-toplevel-bindings))
+
+(setup-shared+static-extension-module 'message-digest (extension-version "3.0.5")
+  #:inline? #t
+	#:types? #t
+  #:compile-options '(
+    -scrutinize
+    -optimize-level 3 -debug-level 1
+    -no-procedure-checks-for-toplevel-bindings))

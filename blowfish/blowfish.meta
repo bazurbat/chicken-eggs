@@ -1,0 +1,6 @@
+((license "LGPL")
+ (category crypt)
+ (depends)
+ (test-depends test)
+ (author "rivo")
+ (synopsis "Blowfish"))

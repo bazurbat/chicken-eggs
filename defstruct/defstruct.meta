@@ -1,0 +1,8 @@
+((egg "defstruct.egg")
+ (synopsis "A more convenient form of define-record")
+ (author "Dorai Sitaram")
+ (category data)
+ (license "BSD")
+ (doc-from-wiki)
+ (test-depends test)
+ (files "defstruct.meta" "defstruct.setup" "defstruct.scm" "defstruct.release-info" "tests/run.scm"))

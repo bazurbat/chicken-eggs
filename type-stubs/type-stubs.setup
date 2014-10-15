@@ -1,0 +1,11 @@
+(compile -O3 -d0 -J -s -o "type-stubs.so"
+         ,(if (version>=? (chicken-version) "4.7.5")
+              "type-stubs-empty.scm"
+              "type-stubs.scm"))
+
+(compile -O3 -d0 -s type-stubs.import.scm)
+
+(install-extension
+ 'type-stubs
+ '("type-stubs.so" "type-stubs.import.so")
+ '((version "0.0.1")))

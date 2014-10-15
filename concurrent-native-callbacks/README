@@ -1,0 +1,11 @@
+	Concurrent Native Callbacks
+	===========================
+
+
+This is a callback-facility for CHICKEN, similar to "define-external",
+that allows callbacks into a running Scheme runtime from concurrently
+executing native threads.
+
+For more information, see
+
+  http://wiki.call-cc.org/eggref/4/concurrent-native-callbacks

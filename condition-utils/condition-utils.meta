@@ -1,0 +1,13 @@
+;;;; condition-utils.meta  -*- Hen -*-
+
+((egg "condition-utils.egg")
+ (category misc)
+ (author "[[kon lovett]]")
+ (license "BSD")
+ (doc-from-wiki)
+ (synopsis "SRFI 12 Condition Utilities")
+ (depends
+  (setup-helper "1.5.2")
+  (check-errors "1.12.0"))
+ (test-depends test)
+ (files "condition-utils.setup" "condition-utils.meta" "condition-utils.release-info" "condition-utils.scm" "tests/run.scm") )

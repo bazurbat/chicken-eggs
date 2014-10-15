@@ -1,0 +1,9 @@
+(compile -s format.scm -j format -O2 -d1)
+(compile -c format.scm -O2 -d1 -unit format)
+(compile -s format.import.scm -O3 -d0)
+
+(install-extension
+ 'format
+ '("format.so" "format.import.so" "format.o")
+ '((version 3.1.6)
+   (static "format.o")))

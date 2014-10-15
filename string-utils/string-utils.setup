@@ -1,0 +1,44 @@
+;;;; string-utils.setup  -*- Hen -*-
+
+(use setup-helper-mod)
+
+(verify-extension-name "string-utils")
+
+(setup-shared-extension-module 'unicode-utils (extension-version "1.2.4")
+  #:inline? #t
+  #:types? #t
+  #:compile-options '(
+    -scrutinize
+    -fixnum-arithmetic
+    -O3 -d1
+    -no-procedure-checks))
+
+(setup-shared-extension-module 'memoized-string (extension-version "1.2.4")
+  #:inline? #t
+  #:types? #t
+  #:compile-options '(
+    -scrutinize
+    -disable-interrupts ;could use synch but ...
+    -fixnum-arithmetic
+    -O3 -d1
+    -no-procedure-checks))
+
+(setup-shared-extension-module 'to-hex (extension-version "1.2.4"))
+
+(setup-shared-extension-module 'string-hexadecimal (extension-version "1.2.4")
+  #:inline? #t
+  #:types? #t
+  #:compile-options '(
+    -scrutinize
+    -fixnum-arithmetic
+    -O3 -d1
+    -no-procedure-checks))
+
+(setup-shared-extension-module 'string-utils (extension-version "1.2.4")
+  #:inline? #t
+  #:types? #t
+  #:compile-options '(
+    -scrutinize
+    -fixnum-arithmetic
+    -O3 -d1
+    -no-procedure-checks))

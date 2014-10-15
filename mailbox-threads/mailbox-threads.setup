@@ -1,0 +1,11 @@
+(compile -s -O2 mailbox-threads.scm -j mailbox-threads)
+(compile -s -O2 mailbox-threads.import.scm)
+(compile -c -O2 mailbox-threads.scm -unit mailbox-threads)
+
+(install-extension
+   'mailbox-threads
+   '("mailbox-threads.o" "mailbox-threads.so"
+     "mailbox-threads.import.so")
+   '((version 1.4)
+     (static "mailbox-threads.o")
+     (documentation "mailbox-threads.html"))) 

@@ -1,0 +1,9 @@
+;;; make.setup -*- Scheme -*-
+
+(compile -s -O2 -d1 -j make make.scm)
+(compile -s -O2 -d1 make.import.scm)
+
+(install-extension
+ 'make
+ '("make.so" "make.import.so")
+ '((version 1.7)))

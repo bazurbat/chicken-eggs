@@ -1,0 +1,8 @@
+(compile -s -O2 -d0 -local -inline lru-cache.scm -j lru-cache)
+(compile -s -O2 -d0 lru-cache.import.scm)
+
+(install-extension
+  'lru-cache
+  '("lru-cache.so" "lru-cache.import.so")
+  `((version "0.5.3")
+    (documentation "lru-cache.html")))
