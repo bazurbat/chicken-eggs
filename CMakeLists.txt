@@ -52,8 +52,8 @@ add_chicken_egg(condition-utils
 add_chicken_egg(coops
     DEPENDS matchable record-variants)
 
-# add_chicken_egg(crc32
-#     DEPENDS setup-helper)
+add_chicken_egg(crc32
+    DEPENDS setup-helper)
 
 add_chicken_egg(dbus
     DEPENDS easyffi matchable miscmacros foreigners)
@@ -74,7 +74,7 @@ add_chicken_egg(fmt
 add_chicken_egg(foreigners
     DEPENDS matchable)
 
-# add_chicken_egg(format)
+add_chicken_egg(format)
 
 add_chicken_egg(iset)
 
