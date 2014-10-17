@@ -152,3 +152,8 @@ add_chicken_egg(utf8
 
 add_chicken_egg(variable-item
     DEPENDS setup-helper check-errors)
+
+add_chicken_egg(srfi-14)
+
+add_chicken_egg(srfi-13
+    DEPENDS srfi-14)
