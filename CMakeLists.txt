@@ -61,7 +61,7 @@ add_chicken_egg(dbus
 add_chicken_egg(defstruct)
 
 add_chicken_egg(easyffi
-    DEPENDS silex matchable regex make)
+    DEPENDS srfi-13 silex matchable regex make)
 
 add_chicken_egg(feature-test)
 
@@ -128,10 +128,10 @@ add_chicken_egg(shell)
 add_chicken_egg(silex)
 
 add_chicken_egg(socket
-    DEPENDS foreigners)
+    DEPENDS srfi-13 foreigners)
 
 add_chicken_egg(sql-de-lite
-    DEPENDS lru-cache foreigners)
+    DEPENDS srfi-18 lru-cache foreigners)
 
 add_chicken_egg(string-utils
     DEPENDS setup-helper miscmacros lookup-table check-errors)
@@ -157,3 +157,5 @@ add_chicken_egg(srfi-14)
 
 add_chicken_egg(srfi-13
     DEPENDS srfi-14)
+
+add_chicken_egg(srfi-18)
