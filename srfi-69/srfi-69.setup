@@ -1,0 +1,8 @@
+(compile srfi-69.scm -O3 -d1 -s -J)
+(compile srfi-69.scm -O3 -d1 -c -no-module-registration -unit srfi-69)
+(compile srfi-69.import.scm -O3 -d0 -s)
+
+(install-extension
+  'srfi-69
+  `("srfi-69.so" "srfi-69.import.so" "srfi-69.o" "srfi-69.types")
+  `((version "1.0")))

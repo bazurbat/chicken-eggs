@@ -3,7 +3,7 @@
 
 (use make)
 
-(define version "1.5.2")
+(define version "1.5.3")
 
 (make (("c.l.scm" ("c.l") 
 	(run (csi -s runsilex.scm)) )

@@ -1,0 +1,11 @@
+;; -*- srfi-13 -*-
+
+(compile srfi-13.scm -O3 -d1 -sJ)
+(compile srfi-13.scm -O3 -d1 -c -no-module-registration -unit srfi-13)
+(compile srfi-13.import.scm -O3 -d0 -s)
+
+(install-extension
+ 'srfi-13
+ '("srfi-13.so" "srfi-13.import.so" "srfi-13.o" "srfi-13.types")
+ '((version "1.0")))
+

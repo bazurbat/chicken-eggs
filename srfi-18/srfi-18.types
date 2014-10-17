@@ -1,0 +1,75 @@
+
+(abandoned-mutex-exception? (#(procedure #:pure) abandoned-mutex-exception? (*) boolean))
+(condition-variable-broadcast! (#(procedure #:clean #:enforce) condition-variable-broadcast! ((struct condition-variable)) undefined))
+(condition-variable-name (#(procedure #:clean #:enforce) condition-variable-name ((struct condition-variable)) *))
+(condition-variable-signal! (#(procedure #:clean #:enforce) condition-variable-signal! ((struct condition-variable)) undefined))
+(condition-variable-specific (#(procedure #:clean #:enforce) condition-variable-specific ((struct condition-variable)) *))
+(condition-variable-specific-set! (#(procedure #:clean #:enforce) condition-variable-specific-set! ((struct condition-variable) *) undefined))
+
+(condition-variable? (#(procedure #:pure #:predicate (struct condition-variable))
+		      condition-variable? (*) 
+		      boolean))
+
+(current-thread (#(procedure #:clean) current-thread () (struct thread))) ;XXX
+
+(current-time (#(procedure #:clean) current-time () (struct time)))
+(join-timeout-exception? (#(procedure #:pure) join-timeout-exception? (*) boolean))
+(make-condition-variable (#(procedure #:clean) make-condition-variable (#!optional *) (struct condition-variable)))
+(make-mutex (#(procedure #:clean) make-mutex (#!optional *) (struct mutex)))
+(make-thread (#(procedure #:clean #:enforce) make-thread ((procedure () . *) #!optional *) (struct thread)))
+(mutex-lock! (#(procedure #:clean #:enforce) mutex-lock! ((struct mutex) #!optional (or false number (struct time)) (or false (struct thread))) boolean))
+
+(mutex-name (#(procedure #:clean #:enforce) mutex-name ((struct mutex)) *)
+	    (((struct mutex)) (##sys#slot #(1) '1)))
+
+(mutex-specific (#(procedure #:clean #:enforce) mutex-specific ((struct mutex)) *)
+		(((struct mutex)) (##sys#slot #(1) '6)))
+
+(mutex-specific-set! (#(procedure #:clean #:enforce) mutex-specific-set! ((struct mutex) *) undefined)
+		     (((struct mutex) *) (##sys#setslot #(1) '6 #(2))))
+
+(mutex-state (#(procedure #:clean #:enforce) mutex-state ((struct mutex)) (or symbol (struct thread))))
+(mutex-unlock! (#(procedure #:clean #:enforce) mutex-unlock! ((struct mutex) #!optional (struct condition-variable) *) undefined))
+
+(mutex? (#(procedure #:pure #:predicate (struct mutex)) mutex? (*) boolean))
+
+(raise (procedure raise (*) noreturn))
+(seconds->time (#(procedure #:clean #:enforce) seconds->time (number) (struct time)))
+(terminated-thread-exception? (#(procedure #:pure) terminated-thread-exception? (*) boolean))
+(thread-join! (#(procedure #:clean #:enforce) thread-join! ((struct thread) #!optional * *) . *))
+
+(thread-name (#(procedure #:clean #:enforce) thread-name ((struct thread)) *)
+	     (((struct thread)) (##sys#slot #(1) '6)))
+
+(thread-quantum (#(procedure #:clean #:enforce) thread-quantum ((struct thread)) fixnum)
+		(((struct thread)) (##sys#slot #(1) '9)))
+
+(thread-quantum-set! (#(procedure #:clean #:enforce) thread-quantum-set! ((struct thread) fixnum) undefined))
+(thread-resume! (#(procedure #:clean #:enforce) thread-resume! ((struct thread)) undefined))
+(thread-signal! (#(procedure #:clean #:enforce) thread-signal! ((struct thread) *) undefined))
+(thread-sleep! (#(procedure #:clean) thread-sleep! (*) undefined))
+
+(thread-specific (#(procedure #:clean #:enforce) thread-specific ((struct thread)) *)
+		 (((struct thread)) (##sys#slot #(1) '10)))
+
+(thread-specific-set! (#(procedure #:clean #:enforce) thread-specific-set! ((struct thread) *) undefined)
+		      (((struct thread) *) (##sys#setslot #(1) '10 #(2))))
+
+(thread-start! (#(procedure #:enforce) thread-start! ((or (struct thread) (procedure () . *))) (struct thread)))
+
+(thread-state (#(procedure #:clean #:enforce) thread-state ((struct thread)) symbol)
+	      (((struct thread)) (##sys#slot #(1) '3)))
+
+(thread-suspend! (#(procedure #:clean #:enforce) thread-suspend! ((struct thread)) undefined))
+(thread-terminate! (#(procedure #:clean #:enforce) thread-terminate! ((struct thread)) undefined))
+(thread-wait-for-i/o! (#(procedure #:clean #:enforce) thread-wait-for-i/o! (fixnum #!optional symbol) undefined))
+(thread-yield! (#(procedure #:clean) thread-yield! () undefined))
+
+(thread? (#(procedure #:pure #:predicate (struct thread)) thread? (*) boolean))
+
+(time->seconds (#(procedure #:clean #:enforce) time->seconds ((struct time)) number))
+
+(time? (#(procedure #:pure #:predicate (struct time)) time? (*) boolean))
+
+(uncaught-exception-reason (#(procedure #:clean #:enforce) uncaught-exception-reason ((struct condition)) *))
+(uncaught-exception? (#(procedure #:pure) uncaught-exception? (*) boolean))

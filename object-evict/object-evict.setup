@@ -1,0 +1,6 @@
+(compile -s object-evict.scm -O3 -d1 -J -emit-inline-file object-evict.inline)
+(compile -s object-evict.import.scm -O3 -d0)
+
+(install-extension ; XXX No object file due to srfi-69 dependency.
+ 'object-evict
+ '("object-evict.so" "object-evict.import.so" "object-evict.types" "object-evict.inline"))

@@ -1,0 +1,18 @@
+(list->queue (#(procedure #:clean #:enforce) list->queue (list) (struct queue)))
+(make-queue (#(procedure #:pure) make-queue () (struct queue)))
+(queue->list (#(procedure #:clean #:enforce) queue->list ((struct queue)) list))
+(queue-add! (#(procedure #:clean #:enforce) queue-add! ((struct queue) *) undefined))
+
+(queue-empty? (#(procedure #:clean #:enforce) queue-empty? ((struct queue)) boolean)
+	      (((struct queue)) (##core#inline "C_i_nullp" (##sys#slot #(1) '1))))
+
+(queue-first (#(procedure #:clean #:enforce) queue-first ((struct queue)) *))
+(queue-last (#(procedure #:clean #:enforce) queue-last ((struct queue)) *))
+
+(queue-length (#(procedure #:clean #:enforce) queue-length ((struct queue)) fixnum)
+	      (((struct queue)) (##sys#slot #(1) '3)))
+
+(queue-push-back! (#(procedure #:clean #:enforce) queue-push-back! ((struct queue) *) undefined))
+(queue-push-back-list! (#(procedure #:clean #:enforce) queue-push-back-list! ((struct queue) list) undefined))
+(queue-remove! (#(procedure #:clean #:enforce) queue-remove! ((struct queue)) *))
+(queue? (#(procedure #:pure #:predicate (struct queue)) queue? (*) boolean))

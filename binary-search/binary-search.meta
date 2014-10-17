@@ -1,0 +1,6 @@
+((synopsis "Binary search algorithm")
+ (category data)
+ (license "BSD")
+ (doc-from-wiki)
+ (author "The CHICKEN Team"))
+

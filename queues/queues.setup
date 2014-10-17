@@ -1,0 +1,8 @@
+(compile -s -O3 -d1 queues.scm -J -emit-inline-file queues.inline)
+(compile -c -O3 -d1 queues.scm -no-module-registration -unit queues)
+(compile -s -O3 -d0 queues.import.scm)
+
+(install-extension
+ 'queues
+ '("queues.so" "queues.import.so" "queues.o" "queues.types" "queues.inline"))
+

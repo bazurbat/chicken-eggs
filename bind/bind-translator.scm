@@ -15,6 +15,7 @@
 			 check-c-syntax
 			 set-bind-options set-renaming
 			 no-c-syntax-checks
+			 test-debug-flag
                          ;; export default foreign-transfomer:
 			 bind-foreign-lambda*)
 
@@ -58,8 +59,14 @@
 (include "bind-foreign-transformer.scm")
 (define foreign-transformer bind-foreign-lambda*)
 
+;; unless this is running in the compiler, create stubs for some API procedures
 (unless (or (memq #:compiling ##sys#features) (memq #:compiler-extension ##sys#features))
-  (set! ##compiler#foreign-type-table (make-vector 301 '())) )
+  (set! chicken.compiler.support#register-foreign-type! void)
+  (set! chicken.compiler.support#lookup-foreign-type void)
+  (set! chicken.compiler.support#debugging-chicken '()))
+
+(define (test-debug-flag sym)
+  (memq sym chicken.compiler.support#debugging-chicken))
 
 (define (parsing-error arg1 . more)
   (if (number? arg1)
@@ -79,8 +86,8 @@
 (define (chunkify)
   (let ((iparts 0))
     (let rec ((scope 0))
-      (let ([chunks '()]
-	    (cdebug (memq 'X ##compiler#debugging-chicken)))
+      (let ((chunks '())
+	    (cdebug (test-debug-flag 'X)))
 	(let loop ((mode #f) (tokens '()))
 	  (match-let (((t . ln) (lexer)))
 	    (when cdebug (pp t (current-error-port)))
@@ -138,7 +145,7 @@
 ;;; Parse each chunk separately
 
 (define (parse c)
-  (when (memq 'C ##compiler#debugging-chicken)
+  (when (test-debug-flag 'C)
     (pp `(CHUNK: ,c) (current-error-port)) )
   (match c
     [() #f]
@@ -190,7 +197,7 @@
 	      (let ([fname (resolve-ffi-include-file filename)])
 		(if fname
 		    (begin
-		      (when (memq 'F ##compiler#debugging-chicken)
+		      (when (test-debug-flag 'F)
 			(fprintf (current-error-port) "parsing ~a ...~%" fname) )
 		      (call-with-input-file fname parse-easy-ffi-rec) )
 		    (parsing-error "can not open include file" filename) ) ) ) ]
@@ -797,7 +804,7 @@
 	  [_ (rec (cdr ts))] ) ) ) )
 
 (define (emit x)
-  (let ((dbg (memq 'F ##compiler#debugging-chicken)))
+  (let ((dbg (test-debug-flag 'F)))
     (when dbg (pp (strip-syntax x) (current-error-port)))
     (set! processed-output (cons x processed-output) ) ) )
 
@@ -1102,8 +1109,7 @@
       [(tname stype arg ret)
        (let ([stname (->symbol tname)] )
 	 (set! declared-types (cons stname declared-types))
-	 (##sys#hash-table-set!
-	  ##compiler#foreign-type-table stname stype) ; will be overwritten later
+	 (chicken.compiler.support#register-foreign-type! stname stype) ; will be overwritten later
 	 `(,(r 'begin)
 	   (,(r 'foreign-declare)
 	    ,(sprintf "#define ~A ~A~%" tname (foreign-type-declaration stype "")))
@@ -1159,7 +1165,8 @@
       [(nonnull-c-string c-string nonnull-c-string* c-string* symbol) (str "char *")]
       [(void) (str "void")]
       [else
-       (cond [(and (symbol? type) (##sys#hash-table-ref ##compiler#foreign-type-table type))
+       (cond [(and (symbol? type) 
+		   (chicken.compiler.support#lookup-foreign-type type))
 	      => (lambda (t)
 		   (foreign-type-declaration (if (vector? t) (vector-ref t 0) t) target)) ]
 	     [(string? type) (str type)]
@@ -1312,7 +1319,7 @@
       ['f64vector '<f64vector>]
       (('template . _) '<pointer>)
       [(? symbol?)
-       (let ([a (##sys#hash-table-ref ##compiler#foreign-type-table ftype)])
+       (let ([a (chicken.compiler.support#lookup-foreign-type ftype)])
 	 (if a
 	     (rec (if (vector? a) (vector-ref a 0) a))
 	     '#t) ) ]

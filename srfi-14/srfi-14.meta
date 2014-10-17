@@ -1,0 +1,6 @@
+;; -*- scheme -*-
+((synopsis "SRFI-14 character-sets library")
+ (author "Olin Shivers")
+ (maintainer "The CHICKEN Team")
+ (category data)
+ (license "BSD"))

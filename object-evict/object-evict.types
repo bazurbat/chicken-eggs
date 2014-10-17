@@ -1,0 +1,6 @@
+(object-evict (#(procedure #:clean #:enforce) object-evict (* #!optional (procedure (fixnum) pointer)) *))
+(object-evict-to-location (#(procedure #:clean #:enforce) object-evict-to-location (* (or pointer locative procedure port) #!optional fixnum) * pointer))
+(object-evicted? (#(procedure #:pure) object-evicted? (*) boolean))
+(object-release (#(procedure #:enforce) object-release (* #!optional (procedure (pointer) *)) *))
+(object-size (#(procedure #:clean) object-size (*) fixnum))
+(object-unevict (procedure object-unevict (* #!optional *) *))

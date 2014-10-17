@@ -1,0 +1,6 @@
+((synopsis "A queue data structure")
+ (category data)
+ (license "Public Domain")
+ (doc-from-wiki)
+ (author "Andrew Wilcox, ported to CHICKEN by felix"))
+

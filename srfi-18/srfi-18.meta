@@ -1,0 +1,7 @@
+;; -*- scheme -*-
+((synopsis "SRFI-18 thread library")
+ (author "The CHICKEN Team")
+ (maintainer "The CHICKEN Team")
+ (category hell)
+ (license "BSD"))
+

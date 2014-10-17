@@ -10,7 +10,7 @@ find_chicken_extension(regex)
 find_chicken_extension(make)
 
 define_chicken_extension(bind
-    VERSION 1.5.2
+    VERSION 1.5.3
     CATEGORY "ffi"
     DESCRIPTION "Automatically generate bindings from C/C++ declarations"
     LICENSE "public domain"

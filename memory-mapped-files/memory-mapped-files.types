@@ -1,0 +1,8 @@
+(map-file-to-memory (#(procedure #:clean #:enforce) map-file-to-memory (* fixnum fixnum fixnum fixnum #!optional fixnum) (struct mmap)))
+(map/anonymous fixnum)
+(map/file fixnum)
+(map/fixed fixnum)
+(map/private fixnum)
+(map/shared fixnum)
+(memory-mapped-file-pointer (#(procedure #:clean #:enforce) memory-mapped-file-pointer ((struct mmap)) pointer))
+(memory-mapped-file? (#(procedure #:clean #:predicate (struct mmap)) memory-mapped-file? (*) boolean))

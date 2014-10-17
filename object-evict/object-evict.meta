@@ -1,0 +1,7 @@
+((synopsis "Evict data to unmanaged memory")
+ (category data)
+ (license "BSD")
+ (doc-from-wiki)
+ (depends srfi-69)
+ (author "The CHICKEN Team"))
+

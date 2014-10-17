@@ -1,0 +1,3 @@
+(binary-search#binary-search
+		(#(procedure #:enforce) binary-search#binary-search 
+		((or vector list fixnum) (procedure (*) *)) *))

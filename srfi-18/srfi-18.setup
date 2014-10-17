@@ -1,0 +1,9 @@
+(compile srfi-18.scm -O3 -d1 -s -J)
+(compile srfi-18.scm -O3 -d1 -c -no-module-registration -unit srfi-18)
+(compile srfi-18.import.scm -O3 -d0 -s)
+
+(install-extension
+  'srfi-18
+  `("srfi-18.so" "srfi-18.import.so" "srfi-18.o" "srfi-18.types")
+  `((version "1.0")))
+ 

@@ -1,0 +1,11 @@
+(compile binary-search.scm -O3 -d1 -sJ)
+(compile binary-search.scm -O3 -d1 -c -no-module-registration -unit binary-search)
+(compile binary-search.import.scm -O3 -d0 -s)
+
+(install-extension
+ 'binary-search
+ '("binary-search.so"
+   "binary-search.import.so"
+   "binary-search.o"
+   "binary-search.types"))
+

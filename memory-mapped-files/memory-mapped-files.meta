@@ -1,0 +1,5 @@
+((synopsis "Memory-mapped file access for UNIX and Windows")
+ (category misc)
+ (license "BSD")
+ (doc-from-wiki)
+ (author "The CHICKEN Team, Windows support by \"rivo\""))

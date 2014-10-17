@@ -1,8 +1,6 @@
 ;;;; chicken-bind.scm - Standalone wrapper generator
 
 
-(define ##compiler#debugging-chicken '())
-
 (require-extension srfi-1 utils bind-translator extras regex)
 
 (define (usage #!optional (status 0))
@@ -37,7 +35,7 @@ EOF
 	(let ((arg (car args))
 	      (rest (cdr args)))
 	  (cond ((string=? "-debug" arg)
-		 (set! ##compiler#debugging-chicken '(C X))
+		 (set! chicken.compiler.support#debugging-chicken '(C X))
 		 (loop rest))
 		((string=? "-export-constants" arg)
 		 (set-bind-options export-constants: #t)

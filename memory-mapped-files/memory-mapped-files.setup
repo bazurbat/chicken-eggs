@@ -1,0 +1,10 @@
+(compile -s -O3 -d1 memory-mapped-files.scm -emit-inline-file memory-mapped-files.inline -J)
+(compile -c -O3 -d1 memory-mapped-files.scm -no-module-registration -unit memory-mapped-files)
+(compile -s -O3 -d0 memory-mapped-files.import.scm)
+
+(install-extension
+ 'memory-mapped-files
+ '("memory-mapped-files.so" "memory-mapped-files.import.so"
+   "memory-mapped-files.o"
+   "memory-mapped-files.inline" "memory-mapped-files.types"))
+
