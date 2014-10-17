@@ -1,9 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(srfi-13 C)
+project(srfi-18 C)
 
 find_package(Chicken REQUIRED)
-find_chicken_extension(srfi-14 REQUIRED)
 
 define_chicken_extension(${PROJECT_NAME}
     CATEGORY "hell"
