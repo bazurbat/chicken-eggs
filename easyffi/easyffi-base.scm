@@ -68,8 +68,14 @@
 (define no-c-syntax-checks #f)
 (define generic-functions '())
 
+;; unless this is running in the compiler, create stubs for some API procedures
 (unless (or (memq #:compiling ##sys#features) (memq #:compiler-extension ##sys#features))
-  (set! ##compiler#foreign-type-table (make-vector 301 '())) )
+  (set! chicken.compiler.support#register-foreign-type! void)
+  (set! chicken.compiler.support#lookup-foreign-type void)
+  (set! chicken.compiler.support#debugging-chicken '()))
+
+(define (test-debug-flag sym)
+  (memq sym chicken.compiler.support#debugging-chicken))
 
 (define (lexer-error chr)
   (parsing-error (sprintf "FFI lexer error: illegal character: `~c' (code ~s)" chr (char->integer chr))) )
@@ -135,7 +141,7 @@
 ;;; Parse each chunk separately
 
 (define (parse c)
-  (when (memq 'C ##compiler#debugging-chicken)
+  (when (test-debug-flag 'C)
     (pp `(CHUNK: ,c) (current-error-port)) )
   (match c
     [() #f]
@@ -185,7 +191,7 @@
 	      (let ([fname (resolve-ffi-include-file filename)])
 		(if fname
 		    (begin
-		      (when (memq 'F ##compiler#debugging-chicken)
+		      (when (test-debug-flag 'F)
 			(fprintf (current-error-port) "parsing ~a ...~%" fname) )
 		      (call-with-input-file fname parse-easy-ffi-rec) )
 		    (parsing-error "can not open include file" filename) ) ) ) ]
@@ -778,7 +784,7 @@
 	  [_ (rec (cdr ts))] ) ) ) )
 
 (define (emit x)
-  (let ((dbg (memq 'F ##compiler#debugging-chicken)))
+  (let ((dbg (test-debug-flag 'F)))
     (when dbg (pp x (current-error-port)))
     (set! processed-output (cons x processed-output) ) ) )
 
@@ -1149,7 +1155,7 @@
 	     [stname (string->symbol tname)] )
 	 (emit `(foreign-declare ,(sprintf "#define ~A ~A~%" tname (foreign-type-declaration stype ""))))
 	 (emit `(define-foreign-type ,stname ,stype ,@(if arg (list arg) '()) ,@(if ret (list ret) '())))
-	 (##sys#hash-table-set! ##compiler#foreign-type-table stname stype) ; will be overwritten later
+	 (chicken.compiler.support#register-foreign-type! stname stype) ; will be overwritten later
 	 (set! declared-types (cons stname declared-types)) ) ]
       [(tname stype arg) (rec (list tname stype arg #f))]
       [(tname stype) (rec (list tname stype #f #f))]
@@ -1186,7 +1192,7 @@
       [(nonnull-c-string c-string nonnull-c-string* c-string* symbol) (str "char *")]
       [(void) (str "void")]
       [else
-       (cond [(and (symbol? type) (##sys#hash-table-ref ##compiler#foreign-type-table type))
+       (cond [(and (symbol? type) (chicken.compiler.support#lookup-foreign-type type))
 	      => (lambda (t)
 		   (foreign-type-declaration (if (vector? t) (vector-ref t 0) t) target)) ]
 	     [(string? type) (str type)]
@@ -1321,7 +1327,7 @@
       ['f32vector '<f32vector>]
       ['f64vector '<f64vector>]
       [(? symbol?)
-       (let ([a (##sys#hash-table-ref ##compiler#foreign-type-table ftype)])
+       (let ([a (chicken.compiler.support#lookup-foreign-type type)])
 	 (if a
 	     (rec (if (vector? a) (vector-ref a 0) a))
 	     '<top>) ) ]
