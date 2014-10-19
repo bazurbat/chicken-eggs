@@ -62,7 +62,7 @@
                     (else (syntax-error 'define-foreign-record-type
                                         "invalid foreign record-type declaration" (car slts))) )) )
         
-          (##sys#hash-table-set! ##compiler#foreign-type-table tname `(c-pointer ,fname))
+          (chicken.compiler.support#register-foreign-type! tname `(c-pointer ,fname))
 
           (let ((%void 'void)  ; foreign-lambda* recognizes renamed type identifiers now,
                 (%int 'int))   ; but we keep this temporarily for BC
