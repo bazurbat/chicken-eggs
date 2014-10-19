@@ -83,6 +83,7 @@
 		 hash-table-values
 		 hash-table-fold
 		 hash-table-for-each
+		 hash-table-walk ; fmt and lookup-table need this
 		 hash-table-map
 		 hash-by-identity)
 
