@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(message-digest C)
 
 find_package(Chicken REQUIRED)
+find_chicken_extension(srfi-13 REQUIRED)
 find_chicken_extension(setup-helper  1.5.2 REQUIRED)
 find_chicken_extension(miscmacros    2.91  REQUIRED)
 find_chicken_extension(check-errors  1.9.0 REQUIRED)

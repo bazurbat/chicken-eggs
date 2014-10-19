@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(silex C)
 
 find_package(Chicken REQUIRED)
+find_chicken_extension(srfi-13 REQUIRED)
 
 define_chicken_extension(${PROJECT_NAME}
     VERSION 1.4

@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(synch C)
 
 find_package(Chicken REQUIRED)
+find_chicken_extension(srfi-18 REQUIRED)
 find_chicken_extension(setup-helper 1.2.0 REQUIRED)
 find_chicken_extension(check-errors 1.12.1 REQUIRED)
 

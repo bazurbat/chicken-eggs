@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(concurrent-native-callbacks C)
 
 find_package(Chicken REQUIRED)
+find_chicken_extension(srfi-69 REQUIRED)
 find_chicken_extension(typed-records REQUIRED)
 find_chicken_extension(matchable REQUIRED)
 find_chicken_extension(bind REQUIRED)

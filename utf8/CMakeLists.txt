@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(utf8 C)
 
 find_package(Chicken REQUIRED)
+find_chicken_extension(srfi-69 REQUIRED)
 find_chicken_extension(iset REQUIRED)
 find_chicken_extension(regex REQUIRED)
 find_chicken_extension(make REQUIRED)

@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 2.8)
 project(scsh-process C)
 
 find_package(Chicken REQUIRED)
+find_chicken_extension(srfi-13 REQUIRED)
+find_chicken_extension(srfi-14 REQUIRED)
 
 define_chicken_extension(scsh-process
     VERSION 0.4.1

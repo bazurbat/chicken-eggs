@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 2.8)
 project(parley C)
 
 find_package(Chicken REQUIRED)
+find_chicken_extension(srfi-13 REQUIRED)
+find_chicken_extension(srfi-14 REQUIRED)
 find_chicken_extension(stty REQUIRED)
 
 define_chicken_extension(${PROJECT_NAME}

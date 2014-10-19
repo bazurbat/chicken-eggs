@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(mailbox C)
 
 find_package(Chicken REQUIRED)
+find_chicken_extension(srfi-18 REQUIRED)
 find_chicken_extension(setup-helper    1.5.2  REQUIRED)
 find_chicken_extension(check-errors    1.12.5 REQUIRED)
 find_chicken_extension(condition-utils 1.0.0  REQUIRED)

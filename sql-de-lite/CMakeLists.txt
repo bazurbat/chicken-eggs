@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 2.8)
 project(sql-de-lite C)
 
 find_package(Chicken REQUIRED)
+find_chicken_extension(srfi-18 REQUIRED)
+find_chicken_extension(object-evict REQUIRED)
 find_chicken_extension(lru-cache 0.5.3 REQUIRED)
 find_chicken_extension(foreigners REQUIRED)
 

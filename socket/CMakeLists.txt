@@ -3,7 +3,9 @@ cmake_minimum_required(VERSION 2.8)
 project(socket C)
 
 find_package(Chicken REQUIRED)
-find_chicken_extension(foreigners)
+find_chicken_extension(srfi-13 REQUIRED)
+find_chicken_extension(srfi-18 REQUIRED)
+find_chicken_extension(foreigners REQUIRED)
 
 define_chicken_extension(${PROJECT_NAME}
     VERSION 0.2.2

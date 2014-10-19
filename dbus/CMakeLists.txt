@@ -6,6 +6,7 @@ find_package(PkgConfig)
 pkg_check_modules(DBUS REQUIRED dbus-1)
 
 find_package(Chicken REQUIRED)
+find_chicken_extension(srfi-18 REQUIRED)
 find_chicken_extension(easyffi REQUIRED)
 find_chicken_extension(matchable REQUIRED)
 find_chicken_extension(miscmacros REQUIRED)

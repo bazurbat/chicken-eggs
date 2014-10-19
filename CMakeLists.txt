@@ -11,13 +11,17 @@ function(add_chicken_egg name)
     cmake_parse_arguments(extension
         "" "" "DEPENDS" ${ARGN})
 
+    # TODO: need a way to pass system name for cross compilation, but it breaks
+    # Darwin systems
     set(args "")
-    set(cmake_args MODULE_PATH BUILD_TYPE SYSTEM_NAME
+    set(cmake_args MODULE_PATH BUILD_TYPE
         FIND_ROOT_PATH PREFIX_PATH INSTALL_PREFIX
         C_COMPILER C_COMPILER_WORKS)
 
     foreach(var ${cmake_args})
-        list(APPEND args -DCMAKE_${var}=${CMAKE_${var}})
+        if(CMAKE_${var})
+            list(APPEND args -DCMAKE_${var}=${CMAKE_${var}})
+        endif()
     endforeach()
 
     ExternalProject_Add(${name}
@@ -30,9 +34,6 @@ function(add_chicken_egg name)
     endif()
 endfunction()
 
-# add_chicken_egg(bind
-#     DEPENDS silex matchable coops regex make)
-
 add_chicken_egg(bitstring)
 
 add_chicken_egg(blob-utils
@@ -42,9 +43,6 @@ add_chicken_egg(blowfish)
 
 add_chicken_egg(check-errors
     DEPENDS setup-helper)
-
-# add_chicken_egg(concurrent-native-callbacks
-#     DEPENDS typed-records matchable bind miscmacros shell)
 
 add_chicken_egg(condition-utils
     DEPENDS setup-helper check-errors)
@@ -56,7 +54,7 @@ add_chicken_egg(crc32
     DEPENDS setup-helper)
 
 add_chicken_egg(dbus
-    DEPENDS easyffi matchable miscmacros foreigners)
+    DEPENDS srfi-18 easyffi matchable miscmacros foreigners)
 
 add_chicken_egg(defstruct)
 
@@ -66,33 +64,35 @@ add_chicken_egg(easyffi
 add_chicken_egg(feature-test)
 
 add_chicken_egg(filepath
-    DEPENDS matchable)
+    DEPENDS srfi-13 srfi-14 matchable)
 
 add_chicken_egg(fmt
-    DEPENDS utf8)
+    DEPENDS srfi-13 srfi-69 utf8)
 
 add_chicken_egg(foreigners
     DEPENDS matchable)
 
-add_chicken_egg(format)
+add_chicken_egg(format
+    DEPENDS srfi-13)
 
-add_chicken_egg(iset)
+add_chicken_egg(iset
+    DEPENDS srfi-14)
 
 add_chicken_egg(kvlists)
 
 add_chicken_egg(linenoise)
 
 add_chicken_egg(lookup-table
-    DEPENDS setup-helper check-errors miscmacros record-variants synch)
+    DEPENDS srfi-69 setup-helper check-errors miscmacros record-variants synch)
 
 add_chicken_egg(lru-cache
-    DEPENDS record-variants)
+    DEPENDS srfi-69 record-variants)
 
 add_chicken_egg(mailbox
-    DEPENDS setup-helper check-errors condition-utils record-variants)
+    DEPENDS srfi-18 setup-helper check-errors condition-utils record-variants)
 
 add_chicken_egg(mailbox-threads
-    DEPENDS mailbox)
+    DEPENDS srfi-18 mailbox)
 
 add_chicken_egg(make)
 
@@ -102,21 +102,14 @@ add_chicken_egg(md5
     DEPENDS message-digest)
 
 add_chicken_egg(message-digest
-    DEPENDS setup-helper miscmacros check-errors variable-item blob-utils
-            string-utils)
+    DEPENDS srfi-13 setup-helper miscmacros check-errors variable-item
+    blob-utils string-utils)
 
 add_chicken_egg(miscmacros)
-
-# add_chicken_egg(monad)
-
-# add_chicken_egg(parley
-#     DEPENDS stty)
 
 add_chicken_egg(record-variants)
 
 add_chicken_egg(regex)
-
-# add_chicken_egg(scsh-process)
 
 add_chicken_egg(setup-helper)
 
@@ -125,30 +118,25 @@ add_chicken_egg(sha1
 
 add_chicken_egg(shell)
 
-add_chicken_egg(silex)
+add_chicken_egg(silex
+    DEPENDS srfi-13)
 
 add_chicken_egg(socket
-    DEPENDS srfi-13 foreigners)
+    DEPENDS srfi-13 srfi-18 foreigners)
 
 add_chicken_egg(sql-de-lite
-    DEPENDS srfi-18 lru-cache foreigners)
+    DEPENDS srfi-18 object-evict lru-cache foreigners)
 
 add_chicken_egg(string-utils
-    DEPENDS setup-helper miscmacros lookup-table check-errors)
-
-# add_chicken_egg(stty
-#     DEPENDS setup-helper foreigners)
+    DEPENDS srfi-13 setup-helper miscmacros lookup-table check-errors)
 
 add_chicken_egg(synch
-    DEPENDS setup-helper check-errors)
+    DEPENDS srfi-18 setup-helper check-errors)
 
 add_chicken_egg(type-stubs)
 
-# add_chicken_egg(typed-records
-#     DEPENDS defstruct type-stubs)
-
 add_chicken_egg(utf8
-    DEPENDS iset regex make)
+    DEPENDS srfi-69 iset regex make)
 
 add_chicken_egg(variable-item
     DEPENDS setup-helper check-errors)
@@ -159,3 +147,32 @@ add_chicken_egg(srfi-13
     DEPENDS srfi-14)
 
 add_chicken_egg(srfi-18)
+
+add_chicken_egg(srfi-69)
+
+add_chicken_egg(object-evict
+    DEPENDS srfi-69)
+
+if(BUILD_OPTIONALS)
+
+add_chicken_egg(bind
+    DEPENDS srfi-13 silex matchable coops regex make)
+
+add_chicken_egg(concurrent-native-callbacks
+    DEPENDS srfi-69 typed-records matchable bind miscmacros shell)
+
+add_chicken_egg(monad)
+
+add_chicken_egg(parley
+    DEPENDS srfi-13 srfi-14 stty)
+
+add_chicken_egg(scsh-process
+    DEPENDS srfi-13 srfi-69)
+
+add_chicken_egg(stty
+    DEPENDS srfi-69 setup-helper foreigners)
+
+add_chicken_egg(typed-records
+    DEPENDS defstruct type-stubs)
+
+endif(BUILD_OPTIONALS)

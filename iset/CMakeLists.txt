@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(iset C)
 
 find_package(Chicken REQUIRED)
+find_chicken_extension(srfi-14 REQUIRED)
 
 define_chicken_extension(iset
     VERSION 1.8

@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(mailbox-threads C)
 
 find_package(Chicken REQUIRED)
+find_chicken_extension(srfi-18 REQUIRED)
 find_chicken_extension(mailbox REQUIRED)
 
 define_chicken_extension(mailbox-threads
