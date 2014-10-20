@@ -1,6 +1,6 @@
 ;;; Local macros
 
-;;(require-library srfi-13) ;;?
+(begin-for-syntax (require-library srfi-13))
 (import-for-syntax srfi-13)
 
 ;; ;; (local 'ip/multicast-ttl) => '_ip_multicast_ttl
