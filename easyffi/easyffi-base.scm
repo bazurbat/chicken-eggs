@@ -39,6 +39,11 @@
   (use regex)
   (use srfi-13 srfi-1 utils files)
 
+(import (only chicken.compiler.support
+              register-foreign-type!
+              lookup-foreign-type
+              debugging-chicken))
+
 (include "easyffi.l.scm")
 
 (define mutable-fields #f)
@@ -1327,7 +1332,7 @@
       ['f32vector '<f32vector>]
       ['f64vector '<f64vector>]
       [(? symbol?)
-       (let ([a (chicken.compiler.support#lookup-foreign-type type)])
+       (let ([a (chicken.compiler.support#lookup-foreign-type ftype)])
 	 (if a
 	     (rec (if (vector? a) (vector-ref a 0) a))
 	     '<top>) ) ]
