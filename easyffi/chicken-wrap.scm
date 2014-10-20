@@ -1,13 +1,6 @@
 ;;;; chicken-wrap.scm - Standalone wrapper generator
 
-
-(declare
-  (export ##compiler#debugging-chicken))
-
-
 (define-constant +version+ 1.7)
-
-(define ##compiler#debugging-chicken '())
 
 (require-extension srfi-1 utils easyffi-base)
 
@@ -34,7 +27,7 @@ EOF
 		   (set! *to-stdout* #t)
 		   #f)
 		  ((string=? "-debug" arg)
-		   (set! ##compiler#debugging-chicken '(C))
+		   (set! chicken.compiler.support#debugging-chicken '(C))
 		   #f)
 		  ((member arg '("--help" "-help" "-h"))
 		   (usage 0) )
