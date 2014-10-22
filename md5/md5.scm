@@ -3,7 +3,7 @@
 ;;
 ;; All code in this egg is in the Public Domain
 (module md5
-  (md5-primitive)
+  (md5-primitive md5-init md5-update md5-final)
 
 (import chicken scheme foreign)
 (use message-digest-primitive)
@@ -17,6 +17,19 @@
 (define init (foreign-lambda void MD5Init c-pointer))
 (define update (foreign-lambda void MD5Update c-pointer scheme-pointer unsigned-int))
 (define final (foreign-lambda void MD5Final c-pointer scheme-pointer))
+
+(define (md5-init)
+  (let ((ctx (make-blob context-size)))
+    ((foreign-lambda void "MD5Init" scheme-pointer) ctx)
+    ctx))
+
+(define md5-update
+  (foreign-lambda void "MD5Update" scheme-pointer scheme-pointer unsigned-int))
+
+(define (md5-final ctx)
+  (let ((digest (make-blob digest-length)))
+    ((foreign-lambda void "MD5Final" scheme-pointer scheme-pointer) ctx digest)
+    digest))
 
 (define md5-primitive
   (let ((the-md5-primitive #f))
