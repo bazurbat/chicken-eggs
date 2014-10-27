@@ -175,4 +175,6 @@ add_chicken_egg(stty
 add_chicken_egg(typed-records
     DEPENDS defstruct type-stubs)
 
+add_chicken_egg(tcp)
+
 endif(BUILD_OPTIONALS)
