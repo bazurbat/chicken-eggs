@@ -49,6 +49,7 @@
 )
 
 (import scheme chicken foreign)
+(use ports)
 
 (foreign-declare "#include \"tcp.h\"")
 
@@ -570,3 +571,5 @@ EOF
 (define (tcp-listener-fileno l)
   (##sys#check-structure l 'tcp-listener 'tcp-listener-fileno)
   (##sys#slot l 1) )
+
+)

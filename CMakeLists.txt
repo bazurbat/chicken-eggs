@@ -153,6 +153,8 @@ add_chicken_egg(srfi-69)
 add_chicken_egg(object-evict
     DEPENDS srfi-69)
 
+add_chicken_egg(tcp)
+
 if(BUILD_OPTIONALS)
 
 add_chicken_egg(bind
@@ -174,7 +176,5 @@ add_chicken_egg(stty
 
 add_chicken_egg(typed-records
     DEPENDS defstruct type-stubs)
-
-add_chicken_egg(tcp)
 
 endif(BUILD_OPTIONALS)
