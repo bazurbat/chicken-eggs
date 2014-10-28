@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
+enable_testing()
+
 project(srfi-18 C)
 
 find_package(Chicken REQUIRED)
@@ -15,3 +17,6 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0)
 add_chicken_module(${PROJECT_NAME} ${PROJECT_NAME}.scm EXTENSION)
 
 install_chicken_modules(${PROJECT_NAME})
+
+add_custom_target(tests)
+add_subdirectory(tests EXCLUDE_FROM_ALL)
