@@ -16,7 +16,16 @@ define_chicken_extension(${PROJECT_NAME}
     AUTHOR "Jim Ursetto")
 
 find_package(PkgConfig)
-pkg_check_modules(SQLITE REQUIRED sqlite3)
+pkg_check_modules(SQLITE sqlite3)
+
+if(NOT SQLITE_FOUND)
+    find_path(SQLITE_INCLUDE_DIRS sqlite3.h)
+    find_library(SQLITE_LIBRARIES sqlite3)
+endif()
+
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(SQLITE DEFAULT_MSG
+    SQLITE_INCLUDE_DIRS SQLITE_LIBRARIES)
 
 set(CHICKEN_OPTIONS -optimize-level 2 -debug-level 0 -inline -local)
 
