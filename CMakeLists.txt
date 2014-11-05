@@ -111,7 +111,10 @@ add_chicken_egg(record-variants)
 
 add_chicken_egg(regex)
 
-add_chicken_egg(setup-helper)
+add_chicken_egg(setup-api)
+
+add_chicken_egg(setup-helper
+    DEPENDS setup-api)
 
 add_chicken_egg(sha1
     DEPENDS message-digest)
