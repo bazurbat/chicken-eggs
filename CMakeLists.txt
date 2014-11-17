@@ -17,10 +17,16 @@ function(add_chicken_egg name)
     set(cmake_args MODULE_PATH BUILD_TYPE
         FIND_ROOT_PATH PREFIX_PATH INSTALL_PREFIX
         C_COMPILER C_COMPILER_WORKS)
+    set(chicken_args COMPILER INTERPRETER)
 
     foreach(var ${cmake_args})
         if(CMAKE_${var})
             list(APPEND args -DCMAKE_${var}=${CMAKE_${var}})
+        endif()
+    endforeach()
+    foreach(var ${chicken_args})
+        if(CHICKEN_${var})
+            list(APPEND args -DCHICKEN_${var}=${CHICKEN_${var}})
         endif()
     endforeach()
 
