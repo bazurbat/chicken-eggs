@@ -101,7 +101,7 @@
                        '()
                        `((,%define ,ctor
                            (,%foreign-lambda* ,tname ()
-                             ,(sprintf "return((~a *)C_malloc(sizeof(~a)));" fname fname)))))
+                             ,(sprintf "return((~a *)malloc(sizeof(~a)));" fname fname)))))
                  ,@(if (not dtor)
                        '()
                        (let ((ptr (gensym)))
