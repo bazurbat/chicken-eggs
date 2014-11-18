@@ -576,7 +576,7 @@
                ;; emit cexp, allowing post-processing of foreign code
                (stmt
                 (= ,(sprintf "~A ~A *tmp_" m sname)
-                   ,(sprintf " (~A ~A *)C_malloc(sizeof(~A ~A))" m sname m sname))
+                   ,(sprintf " (~A ~A *)malloc(sizeof(~A ~A))" m sname m sname))
                 ,@(map (lambda (f) `(= (-> "tmp_" ,(conc (cadr f))) ,(cadr f)))
                        fields)
                 (return tmp_) ) )

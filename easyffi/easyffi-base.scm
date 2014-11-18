@@ -561,7 +561,7 @@
 	(emit
 	 `(define ,maker
 	    (foreign-lambda* (c-pointer (,m ,sname)) ,fields
-	      ,(sprintf "~A ~A *tmp_ = (~A ~A *)C_malloc(sizeof(~A ~A));~%~Areturn(tmp_);"
+	      ,(sprintf "~A ~A *tmp_ = (~A ~A *)malloc(sizeof(~A ~A));~%~Areturn(tmp_);"
 			m sname m sname m sname
 			(string-intersperse
 			 (map (lambda (f) (sprintf "tmp_->~A = ~A;~%" (cadr f) (cadr f)))

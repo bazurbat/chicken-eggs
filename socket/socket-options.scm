@@ -281,7 +281,7 @@
              (if (= sz len)
                  buf
                  (let ((retbuf (make-blob sz)))
-                   ((foreign-lambda void C_memcpy scheme-pointer scheme-pointer int)
+                   ((foreign-lambda void memcpy scheme-pointer scheme-pointer int)
                     retbuf buf sz)
                    retbuf)))))))
 

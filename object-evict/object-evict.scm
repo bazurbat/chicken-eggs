@@ -17,7 +17,7 @@
 
 (define (object-evict x . allocator)
   (let ([allocator 
-	 (if (pair? allocator) (car allocator) (foreign-lambda c-pointer "C_malloc" int) ) ] 
+	 (if (pair? allocator) (car allocator) (foreign-lambda c-pointer "malloc" int) ) ] 
 	[tab (make-hash-table eq?)] )
     (##sys#check-closure allocator 'object-evict)
     (let evict ([x x])
@@ -77,7 +77,7 @@
 (define (object-release x . releaser)
   (let ([free (if (pair? releaser) 
 		  (car releaser) 
-		  (foreign-lambda void "C_free" c-pointer) ) ]
+		  (foreign-lambda void "free" c-pointer) ) ]
 	[released '() ] )
     (let release ([x x])
       (cond [(not (##core#inline "C_blockp" x)) x ]

@@ -674,7 +674,7 @@ int busy_notification_handler(void *ctx, int times) {
           ((= t type/null)    '())
           ((= t type/blob)
            (let ((b (make-blob (sqlite3_column_bytes stmt-ptr i)))
-                 (%copy! (foreign-lambda c-pointer "C_memcpy"
+                 (%copy! (foreign-lambda c-pointer "memcpy"
                                          scheme-pointer c-pointer int)))
              ;; NB: "return value of sqlite3_column_blob() for a zero-length BLOB is a NULL pointer."
              (%copy! b (sqlite3_column_blob stmt-ptr i) (blob-size b))
@@ -1045,7 +1045,7 @@ int busy_notification_handler(void *ctx, int times) {
         (else
          (error 'callback "invalid result type" x))))
 
-(define %copy! (foreign-lambda c-pointer "C_memcpy"
+(define %copy! (foreign-lambda c-pointer "memcpy"
                                scheme-pointer c-pointer int))
 (define %value-at (foreign-lambda* c-pointer (((c-pointer "sqlite3_value*") vals)
                                               (int i))

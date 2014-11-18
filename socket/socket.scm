@@ -180,7 +180,7 @@
       #f
       (make-sockaddr (sa-family sa)  ;; Assume when len > 0, it at least includes the family.
 		     (let ((b (make-blob len)))
-		       ((foreign-lambda void C_memcpy scheme-pointer c-pointer int)
+		       ((foreign-lambda void memcpy scheme-pointer c-pointer int)
 			b sa len)
 		       b))))
 
@@ -846,13 +846,13 @@
     (define _make_unix_sa
       (foreign-lambda* c-pointer ((nonnull-c-string path))
         "struct sockaddr_un *addr; "
-        "addr = C_malloc(sizeof *addr);"
+        "addr = malloc(sizeof *addr);"
         "memset(addr,0,sizeof *addr);"
         "addr->sun_family = AF_UNIX;"
         "strncpy(addr->sun_path, path, sizeof addr->sun_path - 1);"
         "addr->sun_path[sizeof addr->sun_path - 1] = '\\0';"
         "C_return(addr);"))
-    (define _free (foreign-lambda void "C_free" c-pointer))
+    (define _free (foreign-lambda void "free" c-pointer))
     (let ((sa (_make_unix_sa path)))
       (let ((addr (sa->sockaddr sa (foreign-value "sizeof(struct sockaddr_un)" int))))
         (_free sa)
@@ -1001,7 +1001,7 @@
 ;; On UNIX, testing for port 0 should be sufficient.
 ;; UNIX sockets don't have a name; just return #f.
 (define (socket-name so)   ;; a legacy name
-  (define _free (foreign-lambda void "C_free" c-pointer))
+  (define _free (foreign-lambda void "free" c-pointer))
   (cond #? (AF_UNIX
             ((eq? (socket-family so) AF_UNIX) #f)
             (#f #f))
@@ -1022,7 +1022,7 @@
                           (network-error/errno 'socket-name "unable to get socket name" so))))))))))
 
 (define (socket-peer-name so)
-  (define _free (foreign-lambda void "C_free" c-pointer))
+  (define _free (foreign-lambda void "free" c-pointer))
   (let-location ((len int))
     (let ((sa (_getpeername (socket-fileno so) (location len))))
       (let ((err errno))
@@ -1038,14 +1038,14 @@
 (define _getsockname
   (foreign-lambda* c-pointer ((int s) ((c-pointer int) len))
     "struct sockaddr_storage *ss;"
-    "ss = (struct sockaddr_storage *)C_malloc(sizeof(*ss));"
+    "ss = (struct sockaddr_storage *)malloc(sizeof(*ss));"
     "*len = sizeof(*ss);"
     "if (getsockname(s, (struct sockaddr *)ss, (socklen_t *)len) != 0) C_return(NULL);"
     "C_return(ss);"))
 (define _getpeername
   (foreign-lambda* c-pointer ((int s) ((c-pointer int) len))
     "struct sockaddr_storage *ss;"
-    "ss = (struct sockaddr_storage *)C_malloc(sizeof(*ss));"
+    "ss = (struct sockaddr_storage *)malloc(sizeof(*ss));"
     "*len = sizeof(*ss);"
     "if (getpeername(s, (struct sockaddr *)ss, (socklen_t *)len) != 0) C_return(NULL);"
     "C_return(ss);"))
