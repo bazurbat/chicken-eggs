@@ -16,7 +16,9 @@ function(add_chicken_egg name)
     set(args "")
     set(cmake_args MODULE_PATH BUILD_TYPE
         FIND_ROOT_PATH PREFIX_PATH INSTALL_PREFIX
-        C_COMPILER C_COMPILER_WORKS)
+        AR NM OBJCOPY OBJDUMP RANLIB STRIP C_COMPILER C_COMPILER_WORKS
+        C_FLAGS C_FLAGS_DEBUG C_FLAGS_RELEASE C_FLAGS_MINSIZEREL
+        C_FLAGS_RELWITHDEBINFO)
     set(chicken_args COMPILER INTERPRETER)
 
     foreach(var ${cmake_args})
