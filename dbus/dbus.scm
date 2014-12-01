@@ -583,8 +583,10 @@
 	(define (make-iter msg)
 		(let* ([iter ((foreign-lambda* message-iter-ptr ((message-ptr msg))
 				"DBusMessageIter* i = malloc(sizeof(DBusMessageIter));
-				if (!dbus_message_iter_init (msg, i))
+                                if (!dbus_message_iter_init (msg, i)) {
+                                        free(i);
 					i = (DBusMessageIter*)0;	// Message has no parameters
+                                }
 				C_return (i);") msg) ]
 				[has-next iter]
 				)
@@ -829,6 +831,7 @@
 					;; send response
 					(send-impl conn response #f)
 					(free-iter iter)
+                                        ((foreign-lambda void "dbus_message_unref" message-iter-ptr) response)
 					))))
 
 	(define (handler-wrapper conn msg-cb)
