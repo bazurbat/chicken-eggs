@@ -15,9 +15,15 @@ function(add_chicken_egg name)
     set(cmake_args MODULE_PATH BUILD_TYPE SYSTEM_NAME
         FIND_ROOT_PATH PREFIX_PATH INSTALL_PREFIX
         C_COMPILER C_COMPILER_WORKS)
+    set(chicken_args HOST_SYSTEM EXECUTABLE CSI_EXECUTABLE)
 
     foreach(var ${cmake_args})
         list(APPEND args -DCMAKE_${var}=${CMAKE_${var}})
+    endforeach()
+    foreach(var ${chicken_args})
+        if(CHICKEN_${var})
+            list(APPEND args -DCHICKEN_${var}=${CHICKEN_${var}})
+        endif()
     endforeach()
 
     ExternalProject_Add(${name}
