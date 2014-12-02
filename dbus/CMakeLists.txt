@@ -23,6 +23,6 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0)
 include_directories(${DBUS_INCLUDE_DIRS})
 
 add_chicken_module(dbus dbus.scm EXTENSION)
-target_link_libraries(dbus ${DBUS_LIBRARIES})
+target_link_libraries(dbus ${DBUS_LDFLAGS})
 
 install_chicken_modules(dbus)
