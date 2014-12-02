@@ -21,6 +21,6 @@ set(CHICKEN_OPTIONS -optimize-level 2 -debug-level 0 -inline -local)
 include_directories(${SQLITE_INCLUDE_DIRS})
 
 add_chicken_module(sql-de-lite sql-de-lite.scm EXTENSION)
-target_link_libraries(sql-de-lite ${SQLITE_LIBRARIES})
+target_link_libraries(sql-de-lite ${SQLITE_LDFLAGS})
 
 install_chicken_modules(sql-de-lite)
