@@ -696,6 +696,7 @@
 							C_return(reply);") conn msg) ]
 						[reply-iter (make-iter reply-msg)]
 						[reply-args (iter->list reply-iter)] )
+                                        ((foreign-lambda void "dbus_message_unref" message-iter-ptr) reply-msg)
 					reply-args)))))
 
 	(set! make-method-proxy (lambda (context name)
@@ -722,7 +723,8 @@
 									msg = dbus_pending_call_steal_reply(pending);
 									C_return(msg);") conn msg) ]
 								[reply-iter (make-iter reply-msg)]
-								[reply-args (iter->list reply-iter)] )
+                                                                [reply-args (iter->list reply-iter)] )
+                                                       ((foreign-lambda void "dbus_message_unref" message-iter-ptr) reply-msg)
 							reply-args))))))
 
 	(define-foreign-record-type (vtable "struct DBusObjectPathVTable")
