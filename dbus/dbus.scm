@@ -543,7 +543,10 @@
 							(set! v (make-vector 0)))
 						v)]
 				[(eq? type type-dict-entry)
-					(iter->pair (make-sub-iter iter))]
+                                 (let* ((sub (make-sub-iter iter))
+                                        (data (iter->pair sub)))
+                                   (sub);terminate sub iterrator
+                                   data)]
 				[(eq? type type-struct)
 					(let ([v (iter->vector (make-sub-iter iter))])
 						(if (auto-unbox-structs) v (vector->struct v)))]
