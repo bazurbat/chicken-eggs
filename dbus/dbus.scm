@@ -548,9 +548,12 @@
 					(let ([v (iter->vector (make-sub-iter iter))])
 						(if (auto-unbox-structs) v (vector->struct v)))]
 				[(eq? type type-variant)
-					(if (auto-unbox-variants)
-						((make-sub-iter iter))
-						(make-variant ((make-sub-iter iter))))]
+				 (let* ((sub (make-sub-iter iter))
+					(data (sub)))
+                                   (sub);terminate sub iterator
+				   (if (auto-unbox-variants)
+				       data
+				       (make-variant data)))]
 
 				;; todo: unsupported so far (not understood well enough):
 				;; 	type-object-path and type-signature
