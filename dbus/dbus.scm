@@ -666,6 +666,7 @@
 					(iter-append-basic iter parm))	params)
 				(send-impl conn msg #f)
 				(free-iter iter)
+                                ((foreign-lambda void "dbus_message_unref" message-ptr) msg)
 				; ((foreign-lambda void "dbus_connection_flush" connection-ptr) conn)
 			))))
 
@@ -696,7 +697,7 @@
 							C_return(reply);") conn msg) ]
 						[reply-iter (make-iter reply-msg)]
 						[reply-args (iter->list reply-iter)] )
-                                        ((foreign-lambda void "dbus_message_unref" message-iter-ptr) reply-msg)
+                                        ((foreign-lambda void "dbus_message_unref" message-ptr) reply-msg)
 					reply-args)))))
 
 	(set! make-method-proxy (lambda (context name)
@@ -724,7 +725,7 @@
 									C_return(msg);") conn msg) ]
 								[reply-iter (make-iter reply-msg)]
                                                                 [reply-args (iter->list reply-iter)] )
-                                                       ((foreign-lambda void "dbus_message_unref" message-iter-ptr) reply-msg)
+                                                       ((foreign-lambda void "dbus_message_unref" message-ptr) reply-msg)
 							reply-args))))))
 
 	(define-foreign-record-type (vtable "struct DBusObjectPathVTable")
@@ -833,7 +834,7 @@
 					;; send response
 					(send-impl conn response #f)
 					(free-iter iter)
-                                        ((foreign-lambda void "dbus_message_unref" message-iter-ptr) response)
+                                        ((foreign-lambda void "dbus_message_unref" message-ptr) response)
 					))))
 
 	(define (handler-wrapper conn msg-cb)
