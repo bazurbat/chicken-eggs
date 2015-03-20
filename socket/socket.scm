@@ -4,7 +4,7 @@
 
 ;; Some code was derived from Chicken core tcp.scm.
 
-;; Copyright (c) 2011, Jim Ursetto
+;; Copyright (c) 2011-2012, Jim Ursetto
 ;; Copyright (c) 2008-2011, The Chicken Team
 ;; Copyright (c) 2000-2007, Felix L. Winkelmann
 ;; All rights reserved.
@@ -586,7 +586,12 @@
                            (non-nil (integer->address-family family) family)
                            (non-nil (integer->socket-type socktype) socktype)
                            (non-nil (integer->protocol-type protocol) protocol)))
-    (make-socket s family socktype protocol)))
+    (let ((so (make-socket s family socktype protocol)))
+      ;; Immediately set all sockets in non-blocking mode, even UDP.
+      ;; See http://lists.nongnu.org/archive/html/chicken-users/2013-06/msg00062.html
+      (unless (_make_socket_nonblocking s)
+        (network-error/errno 'socket "unable to set socket to non-blocking" so))
+      so)))
 
 (use srfi-18)
 
@@ -625,8 +630,6 @@
         (eq? err _enetunreach) (eq? err _ehostunreach)))
   (let ((s (socket-fileno so))
         (timeout (socket-connect-timeout)))
-    (unless (_make_socket_nonblocking s)
-      (network-error/errno 'socket-connect "unable to set socket to non-blocking" so))
     (when (eq? -1 (_connect s (sockaddr-blob saddr) (sockaddr-len saddr)))
       (let ((err errno))
         (if (or (eq? err _einprogress)
@@ -736,17 +739,21 @@
   (let ((s (socket-fileno so))
         (to (socket-accept-timeout)))
     (let restart ()
-      (if (eq? 1 (select-for-read s))
-          (let ((s (_accept s #f #f)))
-            (when (eq? -1 s)
-              (network-error/errno 'socket-accept "could not accept from listener" so))
-            (unless (_make_socket_nonblocking s)
-              (network-error/errno 'socket-accept "unable to set socket to non-blocking" s))
-            ;; iffy
-            (make-socket s (socket-family so) (socket-type so) (socket-protocol so)))
-          (begin
+      (let ((f (select-for-read s)))
+        (cond
+          ((eq? f -1)
+           (network-error/errno 'socket-accept "select failed" so))
+          ((eq? f 1)
+           (let ((s (_accept s #f #f)))
+             (when (eq? -1 s)
+               (network-error/errno 'socket-accept "could not accept from listener" so))
+             (let ((so (make-socket s (socket-family so) (socket-type so) (socket-protocol so))))
+               (unless (_make_socket_nonblocking s)
+                 (network-error/errno 'socket-accept "unable to set socket to non-blocking" so))
+               so)))
+          (else
             (block-for-timeout! 'socket-accept to s #:input)
-            (restart))))))
+            (restart)))))))
 
 ;; Returns number of bytes received.  If 0, and socket is sock/stream, peer has shut down his side.
 (define (socket-receive! so buf #!optional (start 0) (end #f) (flags 0))
@@ -1148,6 +1155,7 @@
 			  (if (eq? buflen 0) 
 			      m
 			      (loop n m start) ) ) ) ) )
+	       #-scan-buffer-line-returns-3-vals
 	       (lambda (p limit)	; read-line
 		 (let loop ((str #f)
 			    (limit (or limit (##sys#fudge 21))))
@@ -1177,6 +1185,38 @@
 			  (if (fx< bufindex buflen)
 			      (loop str limit)
 			      #!eof) ) ) ) )
+	       #+scan-buffer-line-returns-3-vals
+	       (lambda (p limit)	; read-line
+		 (when (fx>= bufindex buflen)
+		   (read-input))
+		 (if (fx>= bufindex buflen)
+		     #!eof
+		     (let ((limit (or limit (fx- (##sys#fudge 21) bufindex))))
+		       (receive (next line full-line?)
+			   (##sys#scan-buffer-line
+			    buf
+                            (fxmin buflen (fx+ bufindex limit))
+                            bufindex
+			    (lambda (pos)
+			      (let ((nbytes (fx- pos bufindex)))
+				(cond ((fx>= nbytes limit)
+				       (values #f pos #f))
+				      (else (read-input)
+					    (set! limit (fx- limit nbytes))
+					    (if (fx< bufindex buflen)
+						(values buf bufindex
+							(fxmin buflen
+                                                               (fx+ bufindex limit)))
+						(values #f bufindex #f))))) ) )
+			 ;; Update row & column position
+			 (if full-line?
+			     (begin
+			       (##sys#setislot p 4 (fx+ (##sys#slot p 4) 1))
+			       (##sys#setislot p 5 0))
+			     (##sys#setislot p 5 (fx+ (##sys#slot p 5)
+						      (##sys#size line))))
+			 (set! bufindex next)
+			 line) )) )
 	       ;; (lambda (p)		; read-buffered
 	       ;;   (if (fx>= bufindex buflen)
 	       ;;       ""

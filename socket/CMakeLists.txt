@@ -6,7 +6,7 @@ find_package(Chicken REQUIRED)
 find_chicken_extension(foreigners)
 
 define_chicken_extension(${PROJECT_NAME}
-    VERSION 0.2.2
+    VERSION 0.2.6
     DESCRIPTION "Interface to the BSD socket API"
     CATEGORY "net"
     LICENSE "BSD"
@@ -35,7 +35,9 @@ foreach(feature ${features})
 endforeach()
 
 set(CHICKEN_OPTIONS -optimize-level 2 -debug-level 1
-    -extend feature-test-syntax -extend ${PROJECT_SOURCE_DIR}/socket-config.scm)
+    -extend feature-test-syntax
+    -extend ${PROJECT_SOURCE_DIR}/socket-config.scm
+    -D scan-buffer-line-returns-3-vals)
 
 add_chicken_module(socket socket-mod.scm EXTENSION)
 
