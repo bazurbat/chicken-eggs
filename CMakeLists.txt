@@ -15,7 +15,7 @@ function(add_chicken_egg name)
     set(cmake_args MODULE_PATH BUILD_TYPE SYSTEM_NAME
         FIND_ROOT_PATH PREFIX_PATH INSTALL_PREFIX
         C_COMPILER C_COMPILER_WORKS)
-    set(chicken_args COMPILER INTERPRETER DEPENDS)
+    set(chicken_args COMPILER INTERPRETER)
 
     foreach(var ${cmake_args})
         list(APPEND args -DCMAKE_${var}=${CMAKE_${var}})
