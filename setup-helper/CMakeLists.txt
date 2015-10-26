@@ -4,7 +4,7 @@ project(setup-helper C)
 
 find_package(Chicken REQUIRED)
 
-define_chicken_extension(${PROJECT_NAME}
+chicken_define_extension(${PROJECT_NAME}
     VERSION 1.5.3
     DESCRIPTION "Installation/Setup Shortcut Routines"
     CATEGORY "misc"
@@ -13,7 +13,7 @@ define_chicken_extension(${PROJECT_NAME}
 
 set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0)
 
-add_chicken_module(setup-helper-mod setup-helper-mod.scm EXTENSION)
+chicken_add_module(setup-helper-mod setup-helper-mod.scm EXTENSION)
 
-install_chicken_modules(setup-helper
+chicken_install_modules(setup-helper
     FILES setup-helper.scm)

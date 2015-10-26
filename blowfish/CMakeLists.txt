@@ -4,7 +4,7 @@ project(blowfish C)
 
 find_package(Chicken REQUIRED)
 
-define_chicken_extension(${PROJECT_NAME}
+chicken_define_extension(${PROJECT_NAME}
     VERSION 1.1
     CATEGORY "crypt"
     DESCRIPTION "Blowfish"
@@ -14,6 +14,6 @@ define_chicken_extension(${PROJECT_NAME}
 
 set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0)
 
-add_chicken_module(blowfish blowfish.scm EXTENSION)
+chicken_add_module(blowfish blowfish.scm EXTENSION)
 
-install_chicken_modules(blowfish)
+chicken_install_modules(blowfish)

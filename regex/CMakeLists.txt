@@ -4,7 +4,7 @@ project(regex C)
 
 find_package(Chicken REQUIRED)
 
-define_chicken_extension(regex
+chicken_define_extension(regex
     VERSION 1.0
     DESCRIPTION "Compatibility library for old regular expression API"
     CATEGORY "misc"
@@ -12,6 +12,6 @@ define_chicken_extension(regex
 
 set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0)
 
-add_chicken_module(regex regex.scm EXTENSION)
+chicken_add_module(regex regex.scm EXTENSION)
 
-install_chicken_modules(regex)
+chicken_install_modules(regex)

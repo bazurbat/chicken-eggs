@@ -3,9 +3,9 @@ cmake_minimum_required(VERSION 2.8)
 project(foreigners C)
 
 find_package(Chicken REQUIRED)
-find_chicken_extension(matchable REQUIRED)
+chicken_find_extension(matchable REQUIRED)
 
-define_chicken_extension(foreigners
+chicken_define_extension(foreigners
     VERSION 1.4.1
     DESCRIPTION "Foreign helper macros for Chicken 4"
     CATEGORY "lang-exts"
@@ -14,7 +14,7 @@ define_chicken_extension(foreigners
 
 set(CHICKEN_OPTIONS -optimize-level 2 -debug-level 0)
 
-add_chicken_module(foreigners foreigners.scm EXTENSION
+chicken_add_module(foreigners foreigners.scm EXTENSION
     EMIT_IMPORTS foreigners renaming)
 
-install_chicken_modules(foreigners)
+chicken_install_modules(foreigners)

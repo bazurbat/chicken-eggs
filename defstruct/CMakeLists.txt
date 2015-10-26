@@ -4,7 +4,7 @@ project(defstruct C)
 
 find_package(Chicken REQUIRED)
 
-define_chicken_extension(defstruct
+chicken_define_extension(defstruct
     VERSION 1.6
     DESCRIPTION "A more convenient form of define-record"
     CATEGORY "data"
@@ -13,6 +13,6 @@ define_chicken_extension(defstruct
 
 set(CHICKEN_OPTIONS -optimize-level 2 -debug-level 0)
 
-add_chicken_module(defstruct defstruct.scm EXTENSION)
+chicken_add_module(defstruct defstruct.scm EXTENSION)
 
-install_chicken_modules(defstruct)
+chicken_install_modules(defstruct)

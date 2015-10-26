@@ -4,7 +4,7 @@ project(format C)
 
 find_package(Chicken REQUIRED)
 
-define_chicken_extension(format
+chicken_define_extension(format
     VERSION 3.1.6
     DESCRIPTION "Common-Lisp style formatted output"
     CATEGORY "io"
@@ -14,6 +14,6 @@ define_chicken_extension(format
 
 set(CHICKEN_OPTIONS -optimize-level 2 -debug-level 0)
 
-add_chicken_module(format format.scm EXTENSION)
+chicken_add_module(format format.scm EXTENSION)
 
-install_chicken_modules(format)
+chicken_install_modules(format)

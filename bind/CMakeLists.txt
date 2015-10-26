@@ -3,13 +3,13 @@ cmake_minimum_required(VERSION 2.8)
 project(bind C)
 
 find_package(Chicken REQUIRED)
-find_chicken_extension(silex)
-find_chicken_extension(matchable)
-find_chicken_extension(coops)
-find_chicken_extension(regex)
-find_chicken_extension(make)
+chicken_find_extension(silex)
+chicken_find_extension(matchable)
+chicken_find_extension(coops)
+chicken_find_extension(regex)
+chicken_find_extension(make)
 
-define_chicken_extension(bind
+chicken_define_extension(bind
     VERSION 1.5.2
     CATEGORY "ffi"
     DESCRIPTION "Automatically generate bindings from C/C++ declarations"
@@ -27,13 +27,14 @@ add_custom_command(
     COMMAND ${CHICKEN_INTERPRETER} -s ${PROJECT_SOURCE_DIR}/runsilex.scm
     DEPENDS c.l)
 
-add_chicken_module(cplusplus-object cplusplus-object.scm EXTENSION)
-add_chicken_module(bind-translator bind-translator.scm EXTENSION
+chicken_add_module(cplusplus-object cplusplus-object.scm EXTENSION)
+chicken_add_module(bind-translator bind-translator.scm EXTENSION
     DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/c.l.scm)
-add_chicken_module(bind bind.scm EXTENSION
+chicken_add_module(bind bind.scm EXTENSION
     DEPENDS bind-translator)
-add_chicken_executable(chicken-bind chicken-bind.scm
+chicken_add_executable(chicken-bind chicken-bind.scm
     DEPENDS bind-translator)
+target_link_libraries(chicken-bind ${CHICKEN_LIBRARIES})
 
-install_chicken_modules(bind
+chicken_install_modules(bind
     TARGETS chicken-bind)

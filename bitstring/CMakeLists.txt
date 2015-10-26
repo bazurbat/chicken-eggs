@@ -4,7 +4,7 @@ project(bitstring C)
 
 find_package(Chicken REQUIRED)
 
-define_chicken_extension(${PROJECT_NAME}
+chicken_define_extension(${PROJECT_NAME}
     VERSION 1.11
     CATEGORY "parsing"
     DESCRIPTION "Binary pattern matching"
@@ -14,6 +14,6 @@ define_chicken_extension(${PROJECT_NAME}
 
 set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0)
 
-add_chicken_module(bitstring bitstring.scm EXTENSION)
+chicken_add_module(bitstring bitstring.scm EXTENSION)
 
-install_chicken_modules(bitstring)
+chicken_install_modules(bitstring)

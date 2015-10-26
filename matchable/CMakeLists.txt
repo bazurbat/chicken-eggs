@@ -4,7 +4,7 @@ project(matchable C)
 
 find_package(Chicken REQUIRED)
 
-define_chicken_extension(matchable
+chicken_define_extension(matchable
     VERSION 3.3
     DESCRIPTION "Hygienic MATCH replacement"
     CATEGORY "lang-exts"
@@ -13,6 +13,6 @@ define_chicken_extension(matchable
 
 set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0)
 
-add_chicken_module(matchable matchable.scm EXTENSION)
+chicken_add_module(matchable matchable.scm EXTENSION)
 
-install_chicken_modules(matchable)
+chicken_install_modules(matchable)
