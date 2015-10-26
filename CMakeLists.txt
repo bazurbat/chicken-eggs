@@ -7,7 +7,7 @@ project(chicken-eggs C)
 
 find_package(Chicken REQUIRED)
 
-function(add_chicken_egg name)
+function(chicken_add_egg name)
     cmake_parse_arguments(extension
         "" "" "DEPENDS" ${ARGN})
 
@@ -36,125 +36,125 @@ function(add_chicken_egg name)
     endif()
 endfunction()
 
-# add_chicken_egg(bind
+# chicken_add_egg(bind
 #     DEPENDS silex matchable coops regex make)
 
-add_chicken_egg(bitstring)
+chicken_add_egg(bitstring)
 
-add_chicken_egg(blob-utils
+chicken_add_egg(blob-utils
     DEPENDS setup-helper string-utils)
 
-add_chicken_egg(blowfish)
+chicken_add_egg(blowfish)
 
-add_chicken_egg(check-errors
+chicken_add_egg(check-errors
     DEPENDS setup-helper)
 
-# add_chicken_egg(concurrent-native-callbacks
+# chicken_add_egg(concurrent-native-callbacks
 #     DEPENDS typed-records matchable bind miscmacros shell)
 
-add_chicken_egg(condition-utils
+chicken_add_egg(condition-utils
     DEPENDS setup-helper check-errors)
 
-add_chicken_egg(coops
+chicken_add_egg(coops
     DEPENDS matchable record-variants)
 
-add_chicken_egg(crc32
+chicken_add_egg(crc32
     DEPENDS setup-helper)
 
-add_chicken_egg(dbus
+chicken_add_egg(dbus
     DEPENDS easyffi matchable miscmacros foreigners)
 
-add_chicken_egg(defstruct)
+chicken_add_egg(defstruct)
 
-add_chicken_egg(easyffi
+chicken_add_egg(easyffi
     DEPENDS silex matchable regex make)
 
-add_chicken_egg(feature-test)
+chicken_add_egg(feature-test)
 
-add_chicken_egg(filepath
+chicken_add_egg(filepath
     DEPENDS matchable)
 
-add_chicken_egg(fmt
+chicken_add_egg(fmt
     DEPENDS utf8)
 
-add_chicken_egg(foreigners
+chicken_add_egg(foreigners
     DEPENDS matchable)
 
-add_chicken_egg(format)
+chicken_add_egg(format)
 
-add_chicken_egg(iset)
+chicken_add_egg(iset)
 
-add_chicken_egg(kvlists)
+chicken_add_egg(kvlists)
 
-add_chicken_egg(linenoise)
+chicken_add_egg(linenoise)
 
-add_chicken_egg(lookup-table
+chicken_add_egg(lookup-table
     DEPENDS setup-helper check-errors miscmacros record-variants synch)
 
-add_chicken_egg(lru-cache
+chicken_add_egg(lru-cache
     DEPENDS record-variants)
 
-add_chicken_egg(mailbox
+chicken_add_egg(mailbox
     DEPENDS setup-helper check-errors condition-utils record-variants)
 
-add_chicken_egg(mailbox-threads
+chicken_add_egg(mailbox-threads
     DEPENDS mailbox)
 
-add_chicken_egg(make)
+chicken_add_egg(make)
 
-add_chicken_egg(matchable)
+chicken_add_egg(matchable)
 
-add_chicken_egg(md5
+chicken_add_egg(md5
     DEPENDS message-digest)
 
-add_chicken_egg(message-digest
+chicken_add_egg(message-digest
     DEPENDS setup-helper miscmacros check-errors variable-item blob-utils
             string-utils)
 
-add_chicken_egg(miscmacros)
+chicken_add_egg(miscmacros)
 
-# add_chicken_egg(monad)
+# chicken_add_egg(monad)
 
-# add_chicken_egg(parley
+# chicken_add_egg(parley
 #     DEPENDS stty)
 
-add_chicken_egg(record-variants)
+chicken_add_egg(record-variants)
 
-add_chicken_egg(regex)
+chicken_add_egg(regex)
 
-# add_chicken_egg(scsh-process)
+# chicken_add_egg(scsh-process)
 
-add_chicken_egg(setup-helper)
+chicken_add_egg(setup-helper)
 
-add_chicken_egg(sha1
+chicken_add_egg(sha1
     DEPENDS message-digest)
 
-add_chicken_egg(shell)
+chicken_add_egg(shell)
 
-add_chicken_egg(silex)
+chicken_add_egg(silex)
 
-add_chicken_egg(socket
+chicken_add_egg(socket
     DEPENDS foreigners)
 
-add_chicken_egg(sql-de-lite
+chicken_add_egg(sql-de-lite
     DEPENDS lru-cache foreigners)
 
-add_chicken_egg(string-utils
+chicken_add_egg(string-utils
     DEPENDS setup-helper miscmacros lookup-table check-errors)
 
-# add_chicken_egg(stty
+# chicken_add_egg(stty
 #     DEPENDS setup-helper foreigners)
 
-add_chicken_egg(synch
+chicken_add_egg(synch
     DEPENDS setup-helper check-errors)
 
-add_chicken_egg(type-stubs)
+chicken_add_egg(type-stubs)
 
-# add_chicken_egg(typed-records
+# chicken_add_egg(typed-records
 #     DEPENDS defstruct type-stubs)
 
-add_chicken_egg(utf8
+chicken_add_egg(utf8
     DEPENDS iset regex make)
 
-add_chicken_egg(variable-item
+chicken_add_egg(variable-item
     DEPENDS setup-helper check-errors)
