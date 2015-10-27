@@ -61,8 +61,10 @@ chicken_add_egg(coops
 chicken_add_egg(crc32
     DEPENDS setup-helper)
 
-chicken_add_egg(dbus
-    DEPENDS easyffi matchable miscmacros foreigners)
+if(NOT ANDROID)
+    chicken_add_egg(dbus
+        DEPENDS easyffi matchable miscmacros foreigners)
+endif()
 
 chicken_add_egg(defstruct)
 
