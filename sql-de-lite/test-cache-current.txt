@@ -1,0 +1,116 @@
+alist lookup by hashed value (end of 50 elt list)
+** select 49; **
+   0.662 seconds elapsed
+   0.004 seconds in (major) GC
+       0 mutations
+    1464 minor GCs
+       4 major GCs
+hash-table lookup by string=?
+** select 49; **
+   0.403 seconds elapsed
+   0.001 seconds in (major) GC
+       0 mutations
+    1824 minor GCs
+       3 major GCs
+alist lookup by hashed value (first element)
+** select 0; **
+   0.476 seconds elapsed
+   0.001 seconds in (major) GC
+       0 mutations
+    1900 minor GCs
+       4 major GCs
+(hash "select 0;")
+   0.315 seconds elapsed
+   0.002 seconds in (major) GC
+       0 mutations
+    2644 minor GCs
+       2 major GCs
+(string-hash "select 0;")
+   0.207 seconds elapsed
+   0.001 seconds in (major) GC
+       0 mutations
+    3183 minor GCs
+       1 major GCs
+alist lookup by hashed value (100th element)
+** select 99; **
+   0.824 seconds elapsed
+   0.002 seconds in (major) GC
+       0 mutations
+    1308 minor GCs
+       4 major GCs
+alist lookup by hashed value (200th element)
+** select 199; **
+   1.159 seconds elapsed
+   0.001 seconds in (major) GC
+       0 mutations
+    1151 minor GCs
+       4 major GCs
+hash-table lookup by string=? (200th elt)
+** select 199; **
+   0.412 seconds elapsed
+   0.003 seconds in (major) GC
+       0 mutations
+    1545 minor GCs
+       3 major GCs
+lru-cache populate 100 (capacity 100)
+   0.001 seconds elapsed
+       0 seconds in (major) GC
+     700 mutations
+       8 minor GCs
+       0 major GCs
+lru-cache lookup, select 100;
+select 100;
+   0.506 seconds elapsed
+   0.003 seconds in (major) GC
+       0 mutations
+     471 minor GCs
+       5 major GCs
+random number overhead
+   0.266 seconds elapsed
+   0.001 seconds in (major) GC
+       0 mutations
+    1989 minor GCs
+       1 major GCs
+lru-cache lookup, random (half in cache)
+select 144;
+   0.789 seconds elapsed
+   0.004 seconds in (major) GC
+ 2470470 mutations
+     682 minor GCs
+       7 major GCs
+lru-cache lookup, random (all in cache)
+select 110;
+   0.901 seconds elapsed
+   0.004 seconds in (major) GC
+ 4941424 mutations
+    1357 minor GCs
+       7 major GCs
+lru-cache lookup of static uncached element
+#f
+   0.429 seconds elapsed
+   0.003 seconds in (major) GC
+       0 mutations
+    1383 minor GCs
+       5 major GCs
+lru-cache lookup of static uncached element plus random # overhead
+#f
+    0.64 seconds elapsed
+   0.002 seconds in (major) GC
+       0 mutations
+    2115 minor GCs
+       5 major GCs
+cache size: 100
+alist lookup by hashed value, size 200, random lookup
+** select 32; **
+   1.069 seconds elapsed
+   0.004 seconds in (major) GC
+       0 mutations
+    1933 minor GCs
+       5 major GCs
+alist lookup by hashed value, size 200, random lookup in first half
+** select 8; **
+   0.892 seconds elapsed
+   0.004 seconds in (major) GC
+       0 mutations
+    1402 minor GCs
+       5 major GCs

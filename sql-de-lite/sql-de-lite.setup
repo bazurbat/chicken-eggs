@@ -7,12 +7,12 @@
 ;; Use CSC_OPTIONS="-I<incdir> -L<libdir>" chicken-install
 ;; if you want to look for an external SQLite3 library in a non-standard location.
 
-(define extension-version "0.6.1")
+(define extension-version "0.6.6")
 
 ;; Minimum SQLite version to accept when choosing whether to use external library.
 ;; There's also a minimum legal version that we can even use, but we just let the
 ;; linker error out if too old.
-(define +min-sqlite3-libversion+ 3007011)   ;; 3007011 is included with egg
+(define +min-sqlite3-libversion+ 3008009)   ;; 3008009 is included with egg
 
 (define sqlite3-options
   '(-C -DSQLITE_ENABLE_FTS3
@@ -76,7 +76,7 @@
 (define (install-library)
   (compile -s -O2 -d0 sql-de-lite.import.scm)
   (install-extension
-   'sql-de-lite 
+   'sql-de-lite
    `("sql-de-lite.so" "sql-de-lite.import.so")
    `((version ,extension-version))))
 

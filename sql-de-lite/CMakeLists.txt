@@ -7,11 +7,12 @@ chicken_find_extension(lru-cache 0.5.3 REQUIRED)
 chicken_find_extension(foreigners REQUIRED)
 
 chicken_define_extension(${PROJECT_NAME}
-    VERSION 0.6.1
+    VERSION 0.6.6
     DESCRIPTION "SQLite 3 interface"
     CATEGORY "db"
     LICENSE "BSD"
-    AUTHOR "Jim Ursetto")
+    AUTHOR "Jim Ursetto"
+    URL "https://bitbucket.org/ursetto/sql-de-lite")
 
 find_package(PkgConfig)
 pkg_check_modules(SQLITE REQUIRED sqlite3)
