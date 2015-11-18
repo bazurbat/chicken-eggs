@@ -1,0 +1,8 @@
+;; -*-scheme-*-
+((synopsis "Pathname expansion")
+ (license "BSD")
+ (category os)
+ (doc-from-wiki)
+ ;; No tests; this is very hard to do in a cross-platform way without
+ ;; writing a reimplementation of the functionality in our tests...
+ (author "The CHICKEN team"))

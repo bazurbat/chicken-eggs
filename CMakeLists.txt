@@ -117,6 +117,8 @@ chicken_add_egg(miscmacros)
 
 # chicken_add_egg(monad)
 
+chicken_add_egg(pathname-expand)
+
 # chicken_add_egg(parley
 #     DEPENDS stty)
 
