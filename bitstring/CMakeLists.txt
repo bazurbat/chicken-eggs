@@ -16,4 +16,4 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0)
 
 chicken_add_module(bitstring bitstring.scm EXTENSION)
 
-chicken_install_modules(bitstring)
+chicken_install(EXTENSION bitstring MODULES)

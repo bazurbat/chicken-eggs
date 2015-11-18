@@ -17,4 +17,4 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0 -fixnum-arithmetic -local
 
 chicken_add_module(crc32 crc32.scm EXTENSION)
 
-chicken_install_modules(crc32)
+chicken_install(EXTENSION crc32 MODULES)

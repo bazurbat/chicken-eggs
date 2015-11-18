@@ -16,4 +16,4 @@ set(CHICKEN_OPTIONS -optimize-level 2 -debug-level 0)
 
 chicken_add_module(mailbox-threads mailbox-threads.scm EXTENSION)
 
-chicken_install_modules(mailbox-threads)
+chicken_install(EXTENSION mailbox-threads MODULES)

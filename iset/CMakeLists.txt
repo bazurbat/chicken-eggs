@@ -16,4 +16,4 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0 -inline)
 
 chicken_add_module(iset iset.scm EXTENSION)
 
-chicken_install_modules(iset)
+chicken_install(EXTENSION iset MODULES)

@@ -18,4 +18,4 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0)
 chicken_add_module(parley parley.scm EXTENSION)
 chicken_add_module(parley-auto-completion parley-auto-completion.scm EXTENSION)
 
-chicken_install_modules(${PROJECT_NAME})
+chicken_install(EXTENSION ${PROJECT_NAME} MODULES)

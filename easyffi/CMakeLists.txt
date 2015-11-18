@@ -32,5 +32,5 @@ chicken_add_executable(chicken-wrap chicken-wrap.scm
     DEPENDS easyffi-base)
 target_link_libraries(chicken-wrap ${CHICKEN_LIBRARIES})
 
-chicken_install_modules(easyffi
+chicken_install(EXTENSION easyffi MODULES
     TARGETS chicken-wrap)

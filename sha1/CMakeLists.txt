@@ -16,4 +16,4 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 1)
 
 chicken_add_module(sha1 sha1.scm EXTENSION)
 
-chicken_install_modules(sha1)
+chicken_install(EXTENSION sha1 MODULES)

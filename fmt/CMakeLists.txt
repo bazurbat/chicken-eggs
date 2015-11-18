@@ -30,4 +30,4 @@ chicken_add_module(fmt-unicode fmt-unicode-chicken.scm EXTENSION
 
 # TODO: add install documentation
 
-chicken_install_modules(${PROJECT_NAME})
+chicken_install(EXTENSION ${PROJECT_NAME} MODULES)

@@ -16,4 +16,4 @@ set(CHICKEN_OPTIONS -optimize-level 2 -debug-level 0)
 
 chicken_add_module(filepath filepath.scm EXTENSION)
 
-chicken_install_modules(filepath)
+chicken_install(EXTENSION filepath MODULES)

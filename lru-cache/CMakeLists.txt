@@ -16,4 +16,4 @@ set(CHICKEN_OPTIONS -optimize-level 2 -debug-level 0 -local -inline)
 
 chicken_add_module(lru-cache lru-cache.scm EXTENSION)
 
-chicken_install_modules(lru-cache)
+chicken_install(EXTENSION lru-cache MODULES)

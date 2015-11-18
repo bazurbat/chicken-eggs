@@ -17,4 +17,4 @@ chicken_add_module(synch synch.scm EXTENSION
     OPTIONS -optimize-level 3 -debug-level 1 -fixnum-arithmetic
             -disable-interrupts)
 
-chicken_install_modules(synch)
+chicken_install(EXTENSION synch MODULES)

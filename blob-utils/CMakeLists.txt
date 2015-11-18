@@ -20,4 +20,4 @@ chicken_add_module(blob-set-int blob-set-int.scm EXTENSION)
 
 chicken_add_module(blob-hexadecimal blob-hexadecimal.scm EXTENSION)
 
-chicken_install_modules(blob-utils)
+chicken_install(EXTENSION blob-utils MODULES)

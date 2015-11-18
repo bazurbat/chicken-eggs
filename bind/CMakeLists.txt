@@ -36,5 +36,5 @@ chicken_add_executable(chicken-bind chicken-bind.scm
     DEPENDS bind-translator)
 target_link_libraries(chicken-bind ${CHICKEN_LIBRARIES})
 
-chicken_install_modules(bind
+chicken_install(EXTENSION bind MODULES
     TARGETS chicken-bind)

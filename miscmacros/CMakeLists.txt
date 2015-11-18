@@ -14,4 +14,4 @@ chicken_define_extension(miscmacros
 chicken_add_module(miscmacros miscmacros.scm EXTENSION
     OPTIONS -optimize-level 3 -debug-level 0)
 
-chicken_install_modules(miscmacros)
+chicken_install(EXTENSION miscmacros MODULES)

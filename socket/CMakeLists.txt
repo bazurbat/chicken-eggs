@@ -41,4 +41,4 @@ set(CHICKEN_OPTIONS -optimize-level 2 -debug-level 1
 
 chicken_add_module(socket socket-mod.scm EXTENSION)
 
-chicken_install_modules(socket)
+chicken_install(EXTENSION socket MODULES)

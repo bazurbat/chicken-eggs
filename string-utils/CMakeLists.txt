@@ -28,4 +28,4 @@ chicken_add_module(string-hexadecimal string-hexadecimal.scm EXTENSION
 chicken_add_module(string-utils string-utils.scm EXTENSION
     DEPENDS memoized-string unicode-utils string-hexadecimal)
 
-chicken_install_modules(string-utils)
+chicken_install(EXTENSION string-utils MODULES)

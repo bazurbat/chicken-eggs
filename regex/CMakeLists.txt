@@ -14,4 +14,4 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0)
 
 chicken_add_module(regex regex.scm EXTENSION)
 
-chicken_install_modules(regex)
+chicken_install(EXTENSION regex MODULES)

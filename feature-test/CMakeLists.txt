@@ -15,5 +15,5 @@ set(CHICKEN_OPTIONS -optimize-level 2 -debug-level 0)
 
 chicken_add_module(feature-test feature-test.scm EXTENSION)
 
-chicken_install_modules(feature-test
+chicken_install(EXTENSION feature-test MODULES
     FILES feature-test-syntax.scm)

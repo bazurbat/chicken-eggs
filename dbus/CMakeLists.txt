@@ -25,4 +25,4 @@ include_directories(${DBUS_INCLUDE_DIRS})
 chicken_add_module(dbus dbus.scm EXTENSION)
 target_link_libraries(dbus ${DBUS_LDFLAGS})
 
-chicken_install_modules(dbus)
+chicken_install(EXTENSION dbus MODULES)

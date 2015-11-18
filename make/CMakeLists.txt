@@ -14,4 +14,4 @@ chicken_define_extension(make
 chicken_add_module(make make.scm EXTENSION
     OPTIONS -optimize-level 2 -debug-level 1)
 
-chicken_install_modules(make)
+chicken_install(EXTENSION make MODULES)

@@ -17,4 +17,4 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0)
 
 chicken_add_module(scsh-process scsh-process.scm EXTENSION)
 
-chicken_install_modules(scsh-process)
+chicken_install(EXTENSION scsh-process MODULES)

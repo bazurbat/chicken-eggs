@@ -14,4 +14,4 @@ chicken_define_extension(${PROJECT_NAME}
 chicken_add_module(silex silex.scm EXTENSION
     OPTIONS -optimize-level 2 -debug-level 1)
 
-chicken_install_modules(silex)
+chicken_install(EXTENSION silex MODULES)

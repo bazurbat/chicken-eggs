@@ -17,4 +17,4 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0)
 
 chicken_add_module(stty stty.scm EXTENSION)
 
-chicken_install_modules(${PROJECT_NAME})
+chicken_install(EXTENSION ${PROJECT_NAME} MODULES)

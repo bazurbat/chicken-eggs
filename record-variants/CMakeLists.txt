@@ -14,4 +14,4 @@ chicken_define_extension(record-variants
 chicken_add_module(record-variants record-variants.scm EXTENSION
     OPTIONS -optimize-level 2 -debug-level 0)
 
-chicken_install_modules(record-variants)
+chicken_install(EXTENSION record-variants MODULES)

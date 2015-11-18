@@ -17,4 +17,4 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0 CACHE INTERNAL "")
 
 chicken_add_module(typed-records typed-records.scm EXTENSION)
 
-chicken_install_modules(typed-records)
+chicken_install(EXTENSION typed-records MODULES)

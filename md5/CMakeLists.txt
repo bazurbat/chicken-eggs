@@ -14,4 +14,4 @@ chicken_define_extension(md5
 
 chicken_add_module(md5 md5.scm EXTENSION)
 
-chicken_install_modules(md5)
+chicken_install(EXTENSION md5 MODULES)

@@ -15,5 +15,5 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0)
 
 chicken_add_module(setup-helper-mod setup-helper-mod.scm EXTENSION)
 
-chicken_install_modules(setup-helper
+chicken_install(EXTENSION setup-helper MODULES
     FILES setup-helper.scm)

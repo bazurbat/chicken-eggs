@@ -15,4 +15,4 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0 CACHE INTERNAL "")
 
 chicken_add_module(shell shell.scm EXTENSION)
 
-chicken_install_modules(shell)
+chicken_install(EXTENSION shell MODULES)

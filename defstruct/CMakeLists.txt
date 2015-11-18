@@ -15,4 +15,4 @@ set(CHICKEN_OPTIONS -optimize-level 2 -debug-level 0)
 
 chicken_add_module(defstruct defstruct.scm EXTENSION)
 
-chicken_install_modules(defstruct)
+chicken_install(EXTENSION defstruct MODULES)

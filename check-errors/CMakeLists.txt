@@ -30,4 +30,4 @@ chicken_add_module(check-errors check-errors.scm EXTENSION
 install(FILES inline-type-checks.scm
     DESTINATION ${CHICKEN_DATA_DIR})
 
-chicken_install_modules(check-errors)
+chicken_install(EXTENSION check-errors MODULES)

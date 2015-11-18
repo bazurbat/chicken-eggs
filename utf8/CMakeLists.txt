@@ -28,5 +28,5 @@ chicken_add_module(utf8-case-map utf8-case-map.scm EXTENSION
 chicken_add_module(utf8-srfi-13 utf8-srfi-13.scm EXTENSION
     DEPENDS utf8-lolevel utf8-srfi-14 utf8-case-map)
 
-chicken_install_modules(utf8
+chicken_install(EXTENSION utf8 MODULES
     FILES case-map-1.dat case-map-2.dat)

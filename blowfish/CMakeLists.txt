@@ -16,4 +16,4 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0)
 
 chicken_add_module(blowfish blowfish.scm EXTENSION)
 
-chicken_install_modules(blowfish)
+chicken_install(EXTENSION blowfish MODULES)

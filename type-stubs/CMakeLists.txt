@@ -16,4 +16,4 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0 CACHE INTERNAL "")
 
 chicken_add_module(type-stubs type-stubs.scm EXTENSION)
 
-chicken_install_modules(type-stubs)
+chicken_install(EXTENSION type-stubs MODULES)

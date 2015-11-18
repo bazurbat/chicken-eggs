@@ -20,4 +20,4 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0 -no-procedure-checks
 
 chicken_add_module(mailbox mailbox.scm EXTENSION)
 
-chicken_install_modules(mailbox)
+chicken_install(EXTENSION mailbox MODULES)

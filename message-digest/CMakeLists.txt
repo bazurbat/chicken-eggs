@@ -52,4 +52,4 @@ chicken_add_module(message-digest message-digest.scm EXTENSION
             message-digest-int message-digest-srfi-4
             message-digest-update-item message-digest-item)
 
-chicken_install_modules(message-digest)
+chicken_install(EXTENSION message-digest MODULES)

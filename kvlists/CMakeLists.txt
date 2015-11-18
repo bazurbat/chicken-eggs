@@ -16,4 +16,4 @@ set(CHICKEN_OPTIONS -optimize-level 2 -debug-level 0)
 
 chicken_add_module(kvlists kvlists.scm EXTENSION)
 
-chicken_install_modules(kvlists)
+chicken_install(EXTENSION kvlists MODULES)

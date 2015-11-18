@@ -17,4 +17,4 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 1 -no-procedure-checks
 
 chicken_add_module(variable-item variable-item.scm EXTENSION)
 
-chicken_install_modules(variable-item)
+chicken_install(EXTENSION variable-item MODULES)

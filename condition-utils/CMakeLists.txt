@@ -18,4 +18,4 @@ set(CHICKEN_OPTIONS -optimize-level 3 -debug-level 0 -fixnum-arithmetic
 
 chicken_add_module(condition-utils condition-utils.scm EXTENSION)
 
-chicken_install_modules(condition-utils)
+chicken_install(EXTENSION condition-utils MODULES)

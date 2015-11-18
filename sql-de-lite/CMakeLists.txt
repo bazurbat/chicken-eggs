@@ -23,4 +23,4 @@ include_directories(${SQLITE_INCLUDE_DIRS})
 chicken_add_module(sql-de-lite sql-de-lite.scm EXTENSION)
 target_link_libraries(sql-de-lite ${SQLITE_LDFLAGS})
 
-chicken_install_modules(sql-de-lite)
+chicken_install(EXTENSION sql-de-lite MODULES)

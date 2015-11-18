@@ -19,4 +19,4 @@ chicken_add_module(coops coops-module.scm EXTENSION)
 chicken_add_module(coops-primitive-objects coops-primitive-objects.scm EXTENSION
     DEPENDS coops)
 
-chicken_install_modules(coops)
+chicken_install(EXTENSION coops MODULES)

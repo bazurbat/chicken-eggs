@@ -17,4 +17,4 @@ set(CHICKEN_OPTIONS -optimize-level 2 -debug-level 0)
 chicken_add_module(foreigners foreigners.scm EXTENSION
     EMIT_IMPORTS foreigners renaming)
 
-chicken_install_modules(foreigners)
+chicken_install(EXTENSION foreigners MODULES)
