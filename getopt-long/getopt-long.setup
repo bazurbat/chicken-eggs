@@ -1,0 +1,20 @@
+;;;; -*- Hen -*-
+
+(define (dynld-name fn)		
+  (make-pathname #f fn ##sys#load-dynamic-extension))	
+
+(compile -O2 -d0 -S -s getopt-long.scm -j getopt-long)
+(compile -O2 -d0 -s getopt-long.import.scm)
+
+(install-extension
+
+  ; Name of your extension:
+  'getopt-long
+
+  ; Files to install for your extension:
+  `(,(dynld-name "getopt-long") ,(dynld-name "getopt-long.import") )
+
+  ; Assoc list with properties for your extension:
+  `((version 1.16)
+    ))
+

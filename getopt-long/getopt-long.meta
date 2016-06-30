@@ -1,0 +1,27 @@
+;;;; -*- Hen -*-
+
+((egg "getopt-long.egg") ; This should never change
+
+ ; List here all the files that should be bundled as part of your egg.  
+
+ (files "getopt-long.meta" "getopt-long.setup" "getopt-long.scm" "tests")
+
+ ; Your egg's license:
+
+ (license "LGPL-3")
+
+ ; Pick one from the list of categories (see below) for your egg and
+ ; enter it here.
+
+ (category misc)
+
+ ; A list of eggs getopt-long depends on.
+
+ (needs matchable)
+
+ (test-depends test)
+
+ (author "Ivan Raikov")
+
+ (synopsis "Command line option parsing."))
+

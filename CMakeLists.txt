@@ -115,6 +115,8 @@ chicken_add_egg(message-digest
 
 chicken_add_egg(miscmacros)
 
+chicken_add_egg(getopt-long DEPENDS matchable)
+
 # chicken_add_egg(monad)
 
 chicken_add_egg(pathname-expand)
