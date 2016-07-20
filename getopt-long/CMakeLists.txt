@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(getopt-long)
+project(getopt-long C)
 
 find_package(Chicken REQUIRED)
 chicken_find_extension(matchable REQUIRED)
